@@ -52,7 +52,7 @@ require("header.php");
 									$id_khachhang = '';
 								}
 								//$sql_select = mysqli_query($conn,"SELECT donhang.donhangid, hinhanh, donhang.ngaydat, tensanpham, chitietdonhang.soluong, tongtien, gia FROM donhang join chitietdonhang on donhang.donhangid = chitietdonhang.donhangid join sanpham on chitietdonhang.sanphamid = sanpham.sanphamid" ); 
-								$sql_select = mysqli_query($conn,"SELECT * FROM chitietdonhang join donhang  on chitietdonhang.donhangid= donhang.donhangid join trangthai on trangthai.trangthaiid=donhang.trangthaiid WHERE donhang.khachhangid='$id_khachhang' GROUP BY chitietdonhang.donhangid"); 
+								; 
 
 								?>
 								    <div class="example" style=" font-family: roboto">
@@ -74,30 +74,128 @@ require("header.php");
 														<th style="color:black; text-align: center">Tổng tiền</th>
 														<th style="color:black; text-align: center">Trạng thái đơn hàng</th>
 														<th style="color:black; text-align: center">Chi tiết</th>
+														<th style="color:black; text-align: center">Thực hiện</th>
 													</tr>
+
 													<?php
-													$i = 0;
-													$dem = 0;
-													while($row_donhang = mysqli_fetch_array($sql_select)){ 
+													$sql_select = mysqli_query($conn,"SELECT * FROM chitietdonhang join donhang  on chitietdonhang.donhangid= donhang.donhangid join trangthai on trangthai.trangthaiid=donhang.trangthaiid WHERE donhang.khachhangid='$id_khachhang' and trangthai.trangthaiid <= 4 GROUP BY chitietdonhang.donhangid");
+													$i=0;
+													while($row_donhang = mysqli_fetch_array($sql_select))
+
+													{ 
 														$i++;
 													?> 
 													<tr>
 														<td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
 
 														<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['donhangid']; ?></td>
-														<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['ngaydat'] ?></td>
+
+
+														<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['ngaydat']; ;?>	
+														
+														</td>
+							
+														
+
+
 														<td rowspan="" style=" font-family: roboto; text-align: center"><?php echo number_format($row_donhang['tongtien'])?></td>
 														<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['tentrangthai'] ?></td>
 														<td style="text-align: center" ><a style=" font-family: roboto" href="mypurchase.php?id=<?php echo $_GET['id'] ?>&magd=<?php echo $row_donhang['donhangid'] ?>">Xem chi tiết</a></td>
+
+														<td>
+
+														<?php
+															$today = date('Y-m-d'); 
+															$first_date = strtotime($today);
+															
+															$second_date = strtotime($row_donhang['ngaydat']);
+															
+															$datediff = abs($first_date - $second_date);
+				
+															$songay= floor($datediff/(60*60*24));
+
+															if($songay<='7' and $row_donhang['trangthaiid']==3)
+															{
+    ;?>
+    
+<a href="./yeucau.php?id=<?php echo $row_donhang['donhangid'];?>"><button href="./yeucau.php?id=<?php echo $row_donhang['donhangid'];?>" class="btn btn-primary" style="background-color: #017ee9; border-top-right-radius: 3px; border-bottom-right-radius: 3px;"><span>Yêu cầu đổi/trả</span></button></a>
+
+<?php 
+}
+ elseif ($songay<='7' and $row_donhang['trangthaiid']<3) {;?>
+ 	<button class="btn btn-primary" style="background-color: #017ee9; border-top-right-radius: 3px; border-bottom-right-radius: 3px;" disabled="disabled"><span>Yêu cầu đổi/trả</span></button>
+
+ 
+<?php 
+}
+ else {;?>
+ 	<button class="btn btn-primary" style="background-color: white; border-top-right-radius: 3px; border-bottom-right-radius: 3px;" disabled="disabled"><span style="color: red;">Hoàn thành đơn hàng</span></button>
+
+<?php 
+} 
+
+;?>
+															
+													</td>
 													
 													</tr>
 													<?php
 													} 
 													?> 
 												</table>
-											
+											</div>
 									    
-								
+								<p style=" font-family: roboto; color: black; font-size: 20px">Đơn hàng đổi trả</p><br>
+
+											<div class="container" style=" font-family: roboto, color: black">
+																						
+												<table class="table table-bordered ">
+													<tr>
+														<th style="color:black; text-align: center">Thứ tự</th>
+														<th style="color:black; text-align: center">Mã giao dịch</th>
+														<th style="color:black; text-align: center">Ngày đặt</th>
+														<th style="color:black; text-align: center">Tổng tiền</th>
+														<th style="color:black; text-align: center">Tình trạng đổi trả</th>
+														<th style="color:black; text-align: center">Chi tiết</th>
+														
+													</tr>
+
+													<?php
+													$sql_select = mysqli_query($conn,"SELECT * FROM chitietdonhang join donhang  on chitietdonhang.donhangid= donhang.donhangid join trangthai on trangthai.trangthaiid=donhang.trangthaiid
+													join yeucaudoitra on donhang.donhangid=yeucaudoitra.donhangid
+													join tinhtrang on tinhtrang.tinhtrangid=yeucaudoitra.tinhtrangid WHERE donhang.khachhangid='$id_khachhang' and trangthai.trangthaiid = 5 GROUP BY chitietdonhang.donhangid");
+													$i=0;
+													while($row_donhang = mysqli_fetch_array($sql_select))
+
+													{ 
+														$i++;
+													?> 
+													<tr>
+														<td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
+
+														<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['donhangid']; ?></td>
+
+
+														<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['ngaydat']; ;?>	
+														
+														</td>
+							
+														
+
+
+														<td rowspan="" style=" font-family: roboto; text-align: center"><?php echo number_format($row_donhang['tongtien'])?></td>
+														<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['tentinhtrang'] ?></td>
+														<td style="text-align: center" ><a style=" font-family: roboto" href="mypurchase.php?id=<?php echo $_GET['id'] ?>&magd=<?php echo $row_donhang['donhangid'] ?>">Xem chi tiết</a></td>
+
+														
+													
+													</tr>
+													<?php
+													} 
+													?> 
+												</table>
+											</div>
+									    
 											<p style=" font-family: roboto; color: black; font-size: 20px">Chi tiết đơn hàng</p><br>
 											<?php
 											if(isset($_GET['magd'])){
@@ -106,8 +204,9 @@ require("header.php");
 												$magiaodich = '';
 											}
 											//$sql_select = mysqli_query($con,"SELECT * FROM tbl_giaodich,tbl_khachhang,tbl_sanpham WHERE tbl_giaodich.sanphamid=tbl_sanpham.sanphamid AND tbl_khachhang.khachhang_id=tbl_giaodich.khachhang_id AND tbl_giaodich.magiaodich='$magiaodich' ORDER BY tbl_giaodich.giaodich_id DESC"); 
-											$sql_select = mysqli_query($conn,"SELECT chitietdonhang.donhangid,chitietdonhang.sanphamid, hinhanh, tensanpham, chitietdonhang.soluong, giaban, giakhuyenmai FROM chitietdonhang,donhang,sanpham WHERE chitietdonhang.sanphamid=sanpham.sanphamid AND donhang.donhangid=chitietdonhang.donhangid AND chitietdonhang.donhangid='$magiaodich' ORDER BY donhang.ngaydat DESC");
-										
+											$sql_select = mysqli_query($conn,"SELECT donhang.donhangid,tensanpham, chitietdonhang.gia,chitietdonhang.soluong,thanhtien, sanpham.sanphamid FROM chitietdonhang JOIN donhang on donhang.donhangid=chitietdonhang.donhangid  JOIN sanpham on chitietdonhang.sanphamid=sanpham.sanphamid Where chitietdonhang.donhangid='$magiaodich' ORDER BY donhang.ngaydat DESC");
+
+											
 											?> 
 											<table class="table table-bordered ">
 												<tr>
@@ -116,29 +215,39 @@ require("header.php");
 													<th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
 													<th style="color:black; font-family: roboto; text-align: center">Số lượng</th>
 													<th style="color:black; font-family: roboto; text-align: center">Giá</th>
+													<th style="color:black; font-family: roboto; text-align: center">Thành tiền</th>
 
 
 												</tr>
 												<?php
-												$i = 0;
-												while($row_donhang = mysqli_fetch_array($sql_select)){ 
+												$i=0;
+												
+												while($row_donhang = mysqli_fetch_array($sql_select))
+												{
 													$i++;
+
+													
+
+													
 												?> 
 												<tr>
 													<td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
 													<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['donhangid']; ?></td>
 													<td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang['tensanpham']; ?></a></td>									
 													<td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['soluong'] ?></td>
-													<td style=" font-family: roboto; text-align: center"><?php if (number_format($row_donhang["giakhuyemai"])>0) echo number_format($row_donhang["giakhuyemai"]).'₫'; else echo number_format($row_donhang["giaban"]).'₫';?></td>
+													<td style=" font-family: roboto; text-align: center"><?php echo number_format($row_donhang["gia"]).'₫';?></td>
+													<td style=" font-family: roboto; text-align: center"><?php echo number_format($row_donhang["thanhtien"]).'₫';?></td>
 												
 												
 
 												</tr>
-												<?php
-												} 
-												?> 
+												<?php } ;?>
 											</table>
 							
+
+							
+
+
 										</div>
         							</div>
 									</div>
