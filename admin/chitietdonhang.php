@@ -66,7 +66,11 @@
                   ?>
     
           <?php 
-          if(  $order[0]['trangthaiid'] ==1 )
+          if(  $order[0]['trangthaiid'] ==1 ||  $order[0]['trangthaiid'] ==4  )
+          {
+
+          
+          if(  $order[0]['trangthaiid'] ==1) 
           {
           ?>
               <div class="row">
@@ -99,6 +103,23 @@
 
                       </div>
                     </div>
+                    <?php
+          }  else { 
+         
+                
+  $sql3 = "
+  SELECT * 
+  FROM nhanvien a join donhang b on a.nhanvienid=b.nhanvienid";
+$dulieu3 = mysqli_query($ketnoi, $sql3);
+$row3 = mysqli_fetch_array($dulieu3);
+ ?>
+
+<label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
+
+ <?php
+     
+         }?>
+
               
             <label><strong>Người nhận: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
                         </div>
@@ -148,6 +169,10 @@ while($row_donhang = mysqli_fetch_array($sql_select)){
 } 
 ?> 
 </table>
+<?php
+if(  $order[0]['trangthaiid'] ==1) 
+          {
+          ?>
 
 <button type="submit">Cập nhât trạng thái</button>
 </form>
@@ -166,12 +191,11 @@ while($row_donhang = mysqli_fetch_array($sql_select)){
             <?php
             }
 
+          }
 
             else {
               ?>
-           
-      
-       
+     
 <?php      
           
   $sql3 = "
@@ -181,8 +205,7 @@ $dulieu3 = mysqli_query($ketnoi, $sql3);
 $row3 = mysqli_fetch_array($dulieu3);
   ?>   
 
-
-                     <label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
+ <label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
 
      <label><strong>Người nhận: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
                         </div>
@@ -233,15 +256,22 @@ while($row_donhang = mysqli_fetch_array($sql_select)){
 
 <?php
 }?>
-</table>
 
+</table>
+<?php
+if(  $order[0]['trangthaiid'] ==2 ) 
+          {
+          ?>
          
 
 <form method="post" action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $id;?>" enctype="multipart/form-data">
-  <button type="submit" value="" name ="thanhcong">Giao hàng thành công</button>
+
+          ?>  <button type="submit" value="" name ="thanhcong">Giao hàng thành công</button>
+      
 <button type="submit"   value="" name="khongthanhcong">Giao hàng không thành công</button>
 </form>
 <?php
+}
 }
 ?>
 
