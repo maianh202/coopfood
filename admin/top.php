@@ -52,6 +52,14 @@
                 $noidungtruyvan3 = mysqli_query($ketnoi, $sql3);
                 $noidungtruyvan4 = mysqli_query($ketnoi, $sql4);
                 $noidungtruyvan5 = mysqli_query($ketnoi, $sql5);
+
+
+                $row1 = mysqli_fetch_array($noidungtruyvan1);
+                $row2 = mysqli_fetch_array($noidungtruyvan2);
+                $row3 = mysqli_fetch_array($noidungtruyvan3);
+                $row4 = mysqli_fetch_array($noidungtruyvan4);
+                $row5 = mysqli_fetch_array($noidungtruyvan5);
+
        
 
                 //4. dem so tin tuc
@@ -97,11 +105,11 @@
 
                   <li><a><i class="fa fa-table"></i> Quản trị đơn hàng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="don-hang-dang-xu-ly.php">Đang xử lý(<?php echo $soluong1 ;?>)</a></li>
-                        <li><a href="don-hang-dang-giao.php">Đang giao(<?php echo $soluong2 ;?>)</a></li>
-                        <li><a href="don-hang-thanh-cong.php">Giao hàng thành công(<?php echo $soluong3 ;?>)</a></li>
-                        <li><a href="don-hang-khong-thanh-cong.php">Giao hàng không thành công(<?php echo $soluong4 ;?>)</a></li>
-                        <li><a href="don-hang-da-huy.php">Đã hủy(<?php echo $soluong5 ;?>)</a></li>
+                        <li><a href="danhsachdonhang.php?id=<?php echo $row1["trangthaiid"];?>">Đang xử lý(<?php echo $soluong1 ;?>)</a></li>
+                        <li><a href="danhsachdonhang.php?id=<?php echo $row2["trangthaiid"];?>">Đang giao(<?php echo $soluong2 ;?>)</a></li>
+                        <li><a href="danhsachdonhang.php?id=<?php echo $row3["trangthaiid"];?>">Giao hàng thành công(<?php echo $soluong3 ;?>)</a></li>
+                        <li><a href="danhsachdonhang.php?id=<?php echo $row4["trangthaiid"];?>">Giao hàng không thành công(<?php echo $soluong4 ;?>)</a></li>
+                      
                     </ul>
                   </li>
               </div>

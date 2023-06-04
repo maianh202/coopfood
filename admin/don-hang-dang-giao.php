@@ -1,4 +1,12 @@
 
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,61 +52,104 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                   <h1>QUẢN TRỊ ĐƠN HÀNG ĐANG GIAO</h1>
                   <div>
-                   <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th style="text-align: center;">#</th>
-                          <th style="text-align: center;">ID</th>
-                          <th style="text-align: center;">Tên người nhận</th>
-                          <th style="text-align: center;">Địa chỉ</th>
-                          <th style="text-align: center;">Điện thoại</th>
-                        
-                          <th style="text-align: center;">Chi tiết đơn</th>
-                          <th style="text-align: center;">Trạng thái</th>
-                          <th style="text-align: center;">Sửa</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      <?php
-                      // Bước 1: Kết nối đến CSDL
-                      include("../config/dbconfig.php");
-                      $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                  <?php
 
-                      //Bước 2: Hiển thị các dữ liệu trong bảng tbl ra đây
-                      $sql = "
-                        SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid join trangthai d on a.trangthaiid= d.trangthaiid where a.trangthaiid='2'
-                        ORDER BY donhangid DESC ";
+                  include("../config/dbconfig.php");
+                  $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                  mysqli_set_charset($conn, 'UTF8');
+                  $id=$_GET['id'];
+                  $order = mysqli_query($conn, "SELECT * from donhang a join trangthai b on a.trangthaiid=b.trangthaiid join chitietdonhang c on a.donhangid=c.donhangid join khachhang d on a.khachhangid=d.khachhangid WHERE a.donhangid = ".$id);
+                  $order = mysqli_fetch_all($order, MYSQLI_ASSOC);
+                  $sql_select = mysqli_query($conn,"SELECT * from chitietdonhang a join sanpham b on a.sanphamid=b.sanphamid  where a.donhangid=".$id);
 
-                      $dulieu = mysqli_query($ketnoi, $sql);
-                      $i = 0;
-                      while ($row = mysqli_fetch_array($dulieu)) {
-                      $i++;
-                      ;?>
-                        <tr>
-                          <th style="text-align: center;" scope="row"><?php echo $i;?></th>
-                          <td style="text-align: center;"><?php echo $row["donhangid"];?></td>
-                           <td style="text-align: center;"><?php echo $row["tenkhach"];?></td>
-                           <td style="text-align: center;"><?php echo $row["diachi"];?></td>
-                           <td style="text-align: center;"><?php echo $row["sdt"];?></td>
-                           
-                           <td style="text-align: center;"><a href="chitietdonhang.php?id=<?php echo $row['donhangid']?>" target="_blank">Chi tiết</a></td>
-                          
-                          <td style="text-align: center;"><?php echo $row["tentrangthai"];?></td>
-                         
-                           <td><a href="donhangdanggiao-sua-thuc-hien.php?id=<?php echo $row['donhangid'];?> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-                        </tr>
-                      <?php
-                      }
-                      ;?>
-                      </tbody>
-                    </table>
+                  
+                  ?>
+        
+                 <div class="form-group row">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" style="margin-top: 10px">Nhân viên xử lý: <span class="required">*</span></label>
+                      <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select name="txttrangthai" style="margin-top: 10px">
+                          <?php
+                          // Bước 1: Kết nối đến CSDL
+                          include("../config/dbconfig.php");
+                          $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                           mysqli_set_charset($ketnoi, 'UTF8');
+
+    
+                $sql3 = "
+                SELECT * 
+                FROM nhanvien a join donhang b on a.nhanvienid=b.nhanvienid";
+              $dulieu3 = mysqli_query($ketnoi, $sql3);
+              $row3 = mysqli_fetch_array($dulieu3)
+                ?>   
+               <label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
+               
+
+              <div>
+            <label><strong>Người nhận: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
+                        </div>
+        <div>
+            <label><strong>Điện thoại: </strong><span> <?= $order[0]['sdt'] ?></span></label>
+        </div>
+
+        <div>
+            <label><strong>Địa chỉ: </strong><span> <?= $order[0]['diachi'] ?></span></label>
+        </div>
+
+        <div>
+            <label><strong>Trạng thái: </strong><span> <?= $order[0]['tentrangthai'] ?></span></label>
+        </div>
+        </div>
+        </div>
 
 
-                  </div>
-                </div>
-              </div>
-            </div>
+
+
+
+
+<table class="table table-bordered ">
+<tr>
+    <th style="color:black; font-family: roboto; text-align: center">Thứ tự</th>
+    <th style="color:black; font-family: roboto; text-align: center">Mã giao dịch</th>													
+    <th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
+    <th style="color:black; font-family: roboto; text-align: center">Số lượng</th>
+    <th style="color:black; font-family: roboto; text-align: center">Giá</th>
+</tr>
+<?php
+$i = 0;
+while($row_donhang = mysqli_fetch_array($sql_select)){ 
+    $i++;
+?> 
+<tr>
+    <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
+    <td style=" font-family: roboto; text-align: center"><?php echo "$id"?></td>
+    <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang['tensanpham']; ?></a></td>									
+    <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['soluong'] ?></td>
+    <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['gia'] ?></td>											
+</tr>
+<?php
+} 
+?> 
+</table>
+<form method="post" action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $id;?>" enctype="multipart/form-data">
+
+
+<button type="submit" formaction="" >Giao hàng thành công</button>
+<button type="submit"  formaction="">Giao hàng không thành công</button>
+</form>
+
+
+       
             <!-- /page content -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
 
             <?php include("bottom.php");?>
       </div>

@@ -65,10 +65,11 @@
                       // Bước 1: Kết nối đến CSDL
                       include("../config/dbconfig.php");
                       $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                      $id=$_GET['id'];
 
                       //Bước 2: Hiển thị các dữ liệu trong bảng tbl ra đây
                       $sql = "
-                        SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid  join trangthai d on a.trangthaiid= d.trangthaiid where a.trangthaiid='1'
+                        SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid  join trangthai d on a.trangthaiid= d.trangthaiid where a.trangthaiid='$id'
                         ORDER BY donhangid DESC ";
 
                       $dulieu = mysqli_query($ketnoi, $sql);
