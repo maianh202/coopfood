@@ -58,15 +58,63 @@
                   $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
                   mysqli_set_charset($conn, 'UTF8');
                   $id=$_GET['id'];
-                  $order = mysqli_query($conn, "SELECT * from donhang a join trangthai b on a.trangthaiid=b.trangthaiid join chitietdonhang c on a.donhangid=c.donhangid join khachhang d on a.khachhangid=d.khachhangid  WHERE a.donhangid = ".$id);
+                  $order = mysqli_query($conn, "SELECT * from donhang a join trangthai b on a.trangthaiid=b.trangthaiid join chitietdonhang c on a.donhangid=c.donhangid join khachhang d on a.khachhangid=d.khachhangid WHERE a.donhangid = ".$id);
                   $order = mysqli_fetch_all($order, MYSQLI_ASSOC);
                   $sql_select = mysqli_query($conn,"SELECT * from chitietdonhang a join sanpham b on a.sanphamid=b.sanphamid  where a.donhangid=".$id);
 
 
                   ?>
         <div class="row">
+        <form method="post" action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $id;?>" enctype="multipart/form-data">
+
+          
+          <?php 
+          if(  $order[0]['trangthaiid'] ==1 )
+          {
+          ?>
+            
+                 <div class="form-group row">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" style="margin-top: 10px">Nhân viên xử lý: <span class="required">*</span></label>
+                      <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select name="txtnhanvien" style="margin-top: 10px">
+                          <?php
+                          // Bước 1: Kết nối đến CSDL
+                          include("../config/dbconfig.php");
+                          $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                           mysqli_set_charset($ketnoi, 'UTF8');
+
+                          //Bước 2: Hiển thị các dữ liệu trong bảng tbl_danh_muc ra đây
+                          $sql = "
+                            SELECT * 
+                            FROM nhanvien";
+                          $dulieu = mysqli_query($ketnoi, $sql);
+                          while ($row = mysqli_fetch_array($dulieu)) {
+                          ;?>
+                              <option value="<?php echo $row["nhanvienid"];?>"><?php echo $row["tennhanvien"];?></option>
+                          <?php
+                          }
+                          ;?>
+                          </select>
+
+                      </div>
+                    </div>
+              <?php } 
+              
+              else { 
+                $sql3 = "
+                SELECT * 
+                FROM nhanvien a join donhang b on a.nhanvienid=b.nhanvienid";
+              $dulieu3 = mysqli_query($ketnoi, $sql3);
+              $row3 = mysqli_fetch_array($dulieu3)
+                ?>   
+                     <label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
+                <?php }  ?>
+
+              <div>
             <label><strong>Người nhận: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
-        </div>
+                        </div>
+           
+
 
         <div>
             <label><strong>Điện thoại: </strong><span> <?= $order[0]['sdt'] ?></span></label>
@@ -79,6 +127,10 @@
         <div>
             <label><strong>Trạng thái: </strong><span> <?= $order[0]['tentrangthai'] ?></span></label>
         </div>
+        </div>
+        </div>
+
+
 
 
 
@@ -107,11 +159,21 @@ while($row_donhang = mysqli_fetch_array($sql_select)){
 } 
 ?> 
 </table>
-<a type="submit" href ="capnhattrangthaidanggiaothuchien.php?id=<?php echo $id;?>">Cập nhât trạng thái
-</a>
+
+<button type="submit">Cập nhât trạng thái</button>
+</form>
 
        
             <!-- /page content -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
 
             <?php include("bottom.php");?>
       </div>
