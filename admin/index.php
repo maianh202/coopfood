@@ -1,9 +1,9 @@
 <?php
   include("../config/dbconfig.php");
   $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-if($conn->connect_error){
-    die ("Connection failed: ".$conn->connect_error);
-}
+  if($conn->connect_error){
+      die ("Connection failed: ".$conn->connect_error);
+  }
 mysqli_query($conn,'set names utf8');
 	session_start();
     

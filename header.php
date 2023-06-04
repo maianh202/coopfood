@@ -177,12 +177,10 @@ if(isset($_POST['dangnhap_home'])) {  //tồn tại khi ấn submit đăng nhậ
                                 
 						        ?>
 						        <li class="text-center" >
-                                    <a href="mypurchase.php?id=<?php echo $_SESSION['khachhangid']?>" style="color:  #017ee9" >
-
-						        	
-						        	<b>Xem đơn hàng của : </b><?php echo $_SESSION['dangnhap_home'] ?></a>
-                                    <br>
-                                    
+                                    <a href="mypurchase.php?id=<?php echo $_SESSION['khachhangid']?>" style="color:  #017ee9" >						        	
+						        	    <b>Xem đơn hàng của : </b><?php echo $_SESSION['dangnhap_home'] ?>
+                                    </a>
+                                    <br>                                  
 						        </li>
 						        <?php
 						        }

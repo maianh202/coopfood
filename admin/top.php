@@ -5,20 +5,21 @@
       padding-bottom: 0px;
     }
   </style>      
-                    <?php
-                    // Bước 1: Kết nối đến CSDL
-                    include("../config/dbconfig.php");
-                    $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-                    mysqli_set_charset($ketnoi, 'UTF8');
-                    //Bước 2: Hiển thị các dữ liệu trong bảng tbl_admin ra đây
-                    $sql = "
-                      SELECT * 
-                      FROM nhanvien";
-                    $dulieu = mysqli_query($ketnoi, $sql);
-                    $row = mysqli_fetch_array($dulieu);
-                       ?>    
+
+  <?php
+  // Bước 1: Kết nối đến CSDL
+  include("../config/dbconfig.php");
+  $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+  mysqli_set_charset($ketnoi, 'UTF8');
+  //Bước 2: Hiển thị các dữ liệu trong bảng tbl_admin ra đây
+  $sql = "
+    SELECT * 
+    FROM nhanvien";
+  $dulieu = mysqli_query($ketnoi, $sql);
+  $row = mysqli_fetch_array($dulieu);
+  ?>    
             
-            <div class="logo"><a href="index.php" class="site_title"> <img style="width: 90%; height: auto;" src="images/sunphone.png"></a></div>
+          <div class="logo"><a href="index.php" class="site_title"> <img style="width: 90%; height: auto;" src="images/sunphone.png"></a></div>
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
@@ -136,10 +137,6 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="index.php"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
-                  </ul>
-                </li>
-
-                
                   </ul>
                 </li>
               </ul>

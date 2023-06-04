@@ -549,8 +549,8 @@ p,tr,h2,a, h4, h3, li {
                             </div><!-- End .product-body -->
                         </div>
                     </div>
-                        <?php 
-                        }; ?>
+                    <?php 
+                    }; ?>
                 </div>
             </div><!-- End .container -->
 
@@ -717,6 +717,7 @@ p,tr,h2,a, h4, h3, li {
     }
 </script>
 
+<!-- Slider banner -->
 <script>
     let slideIndex = 0;
     showSlides();
@@ -742,6 +743,7 @@ p,tr,h2,a, h4, h3, li {
     }
 </script>
 
+<!-- Slider danh muc san pham -->
 <script>
     let index = 0;
     let directX = 1;
