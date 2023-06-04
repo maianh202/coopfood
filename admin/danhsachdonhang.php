@@ -69,7 +69,7 @@
 
                       //Bước 2: Hiển thị các dữ liệu trong bảng tbl ra đây
                       $sql = "
-                        SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid  join trangthai d on a.trangthaiid= d.trangthaiid where a.trangthaiid='$id'
+                        SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid  join trangthai d on a.trangthaiid= d.trangthaiid join nhanvien e on a.nhanvienid=e.nhanvienid where a.trangthaiid='$id'
                         ORDER BY donhangid DESC ";
 
                       $dulieu = mysqli_query($ketnoi, $sql);
@@ -83,7 +83,7 @@
                            <td style="text-align: center;"><?php echo $row["tenkhach"];?></td>
                            <td style="text-align: center;"><?php echo $row["diachi"];?></td>
                            <td style="text-align: center;"><?php echo $row["sdt"];?></td>
-                           <td style="text-align: center;"><?php  echo 'Đang cập nhật' ?></td>
+                           <td style="text-align: center;"><?php if($row["trangthaiid"]=='1') {echo 'Đang cập nhật';} else { echo $row["tennhanvien"];}?></td>
                            <td style="text-align: center;"><?php echo $row["tentrangthai"];?></td>
                            <td style="text-align: center;"><a href="chitietdonhang.php?id=<?php echo $row['donhangid']?>" target="_blank">Chi tiết</a></td>
                            <td> <button  method="post"action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $row['donhangid']?>" enctype="multipart/form-data"> Sửa </button> </td>

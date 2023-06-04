@@ -106,7 +106,10 @@
 
                   <li><a><i class="fa fa-table"></i> Quản trị đơn hàng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="danhsachdonhang.php?id=<?php echo $row1["trangthaiid"];?>">Đang xử lý(<?php echo $soluong1 ;?>)</a></li>
+                        <li><a <?php  if($soluong1 !=0) {?> href="danhsachdonhang.php?id=<?php echo $row1["trangthaiid"];} else 	 { ?> <script type="text/javascript">
+			alert("Không có đơn hàng nào");
+			window.location.href="danhsachdonhang.php";
+		</script> <?php }?>">Đang xử lý(<?php echo $soluong1 ;?>)</a></li>
                         <li><a href="danhsachdonhang.php?id=<?php echo $row2["trangthaiid"];?>">Đang giao(<?php echo $soluong2 ;?>)</a></li>
                         <li><a href="danhsachdonhang.php?id=<?php echo $row3["trangthaiid"];?>">Giao hàng thành công(<?php echo $soluong3 ;?>)</a></li>
                         <li><a href="danhsachdonhang.php?id=<?php echo $row4["trangthaiid"];?>">Giao hàng không thành công(<?php echo $soluong4 ;?>)</a></li>
