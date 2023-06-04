@@ -85,7 +85,7 @@
                            <td style="text-align: center;"><?php  echo 'Đang cập nhật' ?></td>
                            <td style="text-align: center;"><?php echo $row["tentrangthai"];?></td>
                            <td style="text-align: center;"><a href="chitietdonhang.php?id=<?php echo $row['donhangid']?>" target="_blank">Chi tiết</a></td>
-                           <td> <button  method="post"action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $row['donhangid']?>" enctype="multipart/form-data"> Cập nhật </button> </td>
+                           <td> <button  method="post"action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $row['donhangid']?>" enctype="multipart/form-data"> Sửa </button> </td>
                       
                         </tr>
                       <?php
