@@ -257,6 +257,9 @@ p,tr,h2,a, h4, h3, li {
     margin: 0 20px;
 }
 
+.slider-term {
+    margin: 0 20px;
+}
 .contentslider {
     position: relative;
     display: flex;
@@ -267,8 +270,8 @@ p,tr,h2,a, h4, h3, li {
 }
 
 .item {
-    max-width: 150px;
-    padding: 5px;
+    max-width: 250px;
+    padding: 20px;
 }
 
 .item a img{
@@ -278,7 +281,7 @@ p,tr,h2,a, h4, h3, li {
 </style>      
         <!--body-->
         <main class="main">
-            <div class="container banner">
+            <div class="container banner" style="background-color: white">
                 <div class="slide-main-container col-12">
 
                     <div class="slide-main fade">
@@ -317,140 +320,20 @@ p,tr,h2,a, h4, h3, li {
                 <div class="slider-terms">
                     <h3 class="modtitle"><span> Nhóm hàng thường mua</h3>
                     <div class="contentslider">
-                        <div class="item">
-                            <a href="https://cooponline.vn/groups/banh/">
-                                <img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/banh-20220912.png">
-                                <p class="text-center"> Bánh </p>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://cooponline.vn/groups/cham-soc-co-the/">
-                                <img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/cham-soc-co-the-20220912.png">
-                                <p class="text-center"> Chăm sóc cơ thể </p>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://cooponline.vn/groups/cham-soc-suc-khoe/">
-                                <img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/cham-soc-suc-khoe-20220912.png">
-                                <p class="text-center"> Chăm sóc sức khỏe </p>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://cooponline.vn/groups/dau-an/">
-                                <img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/dau-an-20220912.png">
-                                <p class="text-center"> Dầu ăn </p>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://cooponline.vn/groups/do-dung-gia-dinh/">
-                                <img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/do-dung-gia-dinh-20220912.png">
-                                <p class="text-center"> Đồ dùng gia đình </p>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://cooponline.vn/groups/gao-nep-dau-bot/">
-                                <img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/gao-nep-dau-bot-20220912.png">
-                                <p class="text-center"> Gạo, nếp, đậu, bột </p>
-                            </a>
-                        </div>
-<div class="item">
-<a href="https://cooponline.vn/groups/gia-vi-nem/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/gia-vi-nem-20220912.png">
-<p class="text-center"> Gia vị nêm </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/giat-xa/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/giat-xa-20220912.png">
-<p class="text-center"> Giặt xả </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/giay-ve-sinh-khan-giay/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/giay-ve-sinh-khan-giay-20220912.png">
-<p class="text-center"> Giấy vệ sinh, khăn giấy </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/rau-cu/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/rau-cu-20220912.png">
-<p class="text-center"> Rau Củ </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/sua-cac-loai/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/sua-cac-loai-20220921.png">
-<p class="text-center"> Sữa các loại </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/sua-chua/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/sua-chua-20220921.png">
-<p class="text-center"> Sữa chua </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/sua-dac-sua-bot/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/sua-dac-sua-bot-20220921.png">
-<p class="text-center"> Sữa đặc, sữa bột </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/thit/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/thit-20220912.png">
-<p class="text-center"> Thịt </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/thuc-pham-an-lien/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/thuc-pham-an-lien-20220912.png">
-<p class="text-center"> Thực phẩm ăn liền </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/thuc-pham-tru-mat/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/thuc-pham-tru-mat-20220913-3.png">
-<p class="text-center"> Thực phẩm trữ mát </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/thuc-uong-co-con/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/thuc-uong-co-con-20220912.png">
-<p class="text-center"> Thức uống có cồn </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/thuc-uong-khong-con/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/thuc-uong-khong-con-20220912.png">
-<p class="text-center"> Thức uống không cồn </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/thuy-hai-san/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/thuy-hai-san-20220912.png">
-<p class="text-center"> Thủy hải sản </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/trai-cay/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/trai-cay-20220912.png">
-<p class="text-center"> Trái cây </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/trung/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/trung-20220912.png">
-<p class="text-center"> Trứng </p>
-</a>
-</div>
-<div class="item">
-<a href="https://cooponline.vn/groups/ve-sinh-nha-cua/">
-<img class="img-rounded" src="https://cooponline.vn/wp-content/uploads/2022/09/ve-sinh-nha-cua-20220919.png">
-<p class="text-center"> Vệ sinh nhà cửa </p>
-</a>
-</div>
-</div>
-</div>
+                        <?php $sql = "SELECT * FROM danhmuc"  ;
+                            $dulieu = mysqli_query($conn, $sql);
+                        
+                            while ($row = mysqli_fetch_array($dulieu))
+                            {?>
+                                <div class="item">
+                                    <a href="./category.php?id=<?php echo $row["danhmucid"];?>">
+                                        <img class="img-rounded" src="assets/<?php echo $row["hinhanhdm"]; ?>">
+                                        <p class="text-center"> <?php echo $row["tendanhmuc"] ;?> </p>
+                                    </a>
+                                </div>
+                        <?php } ?>
+                    </div>
+                </div>
             </div>
 
             <div class="container trending">
@@ -462,7 +345,7 @@ p,tr,h2,a, h4, h3, li {
             </div>
             <div id="1" class="row product__filter">
                 <?php                                     
-                    $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid
+                    $sql = "SELECT * FROM sanpham a  join danhmuc b on a.danhmucid=b.danhmucid
                     ORDER BY rand() limit 8 ";
                     $dulieu = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($dulieu)) 
@@ -750,8 +633,8 @@ p,tr,h2,a, h4, h3, li {
     sliding();
     function sliding(){
         let slider = document.getElementsByClassName("contentslider");
-        slider[0].style = "transform: translate3d("+ (-150 * index - 10) +"px, 0px, 0px)";
-        if (index == 12){
+        slider[0].style = "transform: translate3d("+ (-230 * index - 20) +"px, 0px, 0px)";
+        if (index == 4){
             directX = -1;
         }
 
