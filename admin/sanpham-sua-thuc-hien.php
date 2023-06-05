@@ -21,9 +21,9 @@
 		$anhminhhoa=NULL;
 	}
 
-	 include("../config/dbconfig.php");
-     $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-                      mysqli_set_charset($ketnoi, 'UTF8');
+	include("../config/dbconfig.php");
+    $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+    mysqli_set_charset($ketnoi, 'UTF8');
 
 	// Bước 2: Chàn dữ liệu vào bảng tbl_sp
 	if($anhminhhoa==NULL) {		
@@ -33,7 +33,7 @@
 
 	} else {
 		$sql=" 
-		 UPDATE `sanpham` SET `tensanpham` = '".$tensp."', `danhmucid` = '".$dmsp."', `soluong` = '".$sl."', `giaban` = '".$giaban."', `giakhuyenmai` = '".$giakm."', `hinhanh` = '".$anhminhhoa."',  `mota` = '".$mota."' WHERE `sanpham`.`sanphamid` = '".$id."';
+		UPDATE `sanpham` SET `tensanpham` = '".$tensp."', `danhmucid` = '".$dmsp."', `soluong` = '".$sl."', `giaban` = '".$giaban."', `giakhuyenmai` = '".$giakm."', `hinhanh` = '".$anhminhhoa."',  `mota` = '".$mota."' WHERE `sanpham`.`sanphamid` = '".$id."';
 		 ";
 	}
 	

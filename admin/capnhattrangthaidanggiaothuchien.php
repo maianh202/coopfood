@@ -10,20 +10,11 @@
 	 $row = mysqli_fetch_array($dulieu); 
 
 	 if (number_format($row["trangthaiid"])==1)
-
 	 {
-
-
-
-	$nv=$_POST["txtnhanvien"];
-
-
-
+		$nv=$_POST["txtnhanvien"];
 		$sql="UPDATE `donhang` SET `trangthaiid` = '2', nhanvienid = '$nv' where donhangid='".$id."';";
-
-
-	// Cho thực thi câu lệnh SQL trên
-	mysqli_query($ketnoi, $sql);
+		// Cho thực thi câu lệnh SQL trên
+		mysqli_query($ketnoi, $sql);
 	}
 	
 
