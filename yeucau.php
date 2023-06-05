@@ -24,183 +24,142 @@ $khachhang=$_SESSION['khachhangid']
         <div class="page-content">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-9">
-                        
-                            <div class="row">
+                    <div class="col-lg-9">                       
+                        <div class="row">
+                            <div class="col-md-5">
+        
+                            </div><!-- End .col-md-5 -->
 
+                            <div class="col-md-7" style="width: 960px;"> 
+                                    <div class="right_col" role="main">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12"> 
+                                                <form action="./guiyeucau.php" style=" margin: 5px; border-color: black;" method="post" enctype="multipart/form-data">
+                                                    <h3 style="color: #005DAC ;text-align: center; margin: 50px 50px 25px 25px" >Yêu cầu đổi trả</h3>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12"> 
+                                                    <h3 class="summary-title" style=" font-family: roboto">THÔNG TIN ĐƠN HÀNG</h3>
+                                                    <!-- End .summary-title -->
+                                                    <?php
+                                                    // Bước 1: Kết nối đến CSDL
+                                                    $ketnoi = mysqli_connect($servername, $username, $password, $dbname);
+                                                    /*mysqli_set_charset($ketnoi, 'UTF8');*/
+                                                    // Bước 2: Lấy dữ liệu từ trên đường đẫn
+                                                    $sql="SELECT * FROM khachhang WHERE khachhangid=".$khachhang;
+                                                    $sql1="SELECT * FROM donhang WHERE donhangid=".$id;
+                                                    $dulieu = mysqli_query($ketnoi, $sql);
+                                                    $row = mysqli_fetch_array($dulieu);
+                                                    $dulieu1 = mysqli_query($ketnoi, $sql1);
+                                                    $row1 = mysqli_fetch_array($dulieu1);
+                                                    ;?>
 
-                                <div class="col-md-5">
-          
-    
-        </div><!-- End .col-md-5 -->
-
-
-
-
-
-                                
-                                <div class="col-md-7" style="width: 960px;"> 
-            <div class="right_col" role="main">
-              <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12"> 
-                <form action="./guiyeucau.php" style=" margin: 5px; border-color: black;" method="post" enctype="multipart/form-data">
-                  <h3 style="color: #005DAC ;text-align: center; margin: 50px 50px 25px 25px" >Yêu cầu đổi trả</h3></div>
-                  <div class="col-md-12 col-sm-12 col-xs-12"> 
-                  <h3 class="summary-title" style=" font-family: roboto">THÔNG TIN ĐƠN HÀNG</h3></div><!-- End .summary-title -->
- 
-                                   
-                  <?php
-                        // Bước 1: Kết nối đến CSDL
-                        $ketnoi = mysqli_connect($servername, $username, $password, $dbname);
-    /*mysqli_set_charset($ketnoi, 'UTF8');*/
-                     // Bước 2: Lấy dữ liệu từ trên đường đẫn
-                       $sql="SELECT * FROM khachhang WHERE khachhangid=".$khachhang;
-                        $sql1="SELECT * FROM donhang WHERE donhangid=".$id;
-                        $dulieu = mysqli_query($ketnoi, $sql);
-                        $row = mysqli_fetch_array($dulieu);
-                        $dulieu1 = mysqli_query($ketnoi, $sql1);
-                        $row1 = mysqli_fetch_array($dulieu1);
-                        ;?>
-                        <table style="margin-left: 50px">
-                            <tr>
-                        <th>Tên khách hàng<span class="required">*:</span></th><th><?php echo $row["tenkhach"] ;?><th></tr>
-                            <tr>
-                        <th>Mã đơn hàng<span class="required">*:</span></th><th><input type="text" name="txtdonhang" value="<?php echo $id ;?>" style="border: none;"></th></tr>
-
-                            <tr>
-                        <th>Thời gian đặt<span class="required">*:</span></th><th><?php echo $row1['ngaydat'] ;?><th></tr>
-                            <tr>
-                        <th>Tổng tiền<span class="required">*:</span></th><th><?php echo number_format($row1['tongtien']).'₫'  ;?><th></tr>
-                            
-                </table><br>
-
-
-                                    <div></div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 50px;"> 
-                                        <h3 class="summary-title" style=" font-family: roboto">CHI TIẾT ĐƠN HÀNG</h3></div>
-                                            <?php
-                                            $sql_select = mysqli_query($conn,"SELECT donhang.donhangid,tensanpham, chitietdonhang.gia,chitietdonhang.soluong,thanhtien, sanpham.sanphamid FROM chitietdonhang JOIN donhang on donhang.donhangid=chitietdonhang.donhangid  JOIN sanpham on chitietdonhang.sanphamid=sanpham.sanphamid Where chitietdonhang.donhangid='$id' ORDER BY donhang.ngaydat DESC");
-                                        
-                                            ?>
-                                            <table class="table table-bordered ">
-                                                <tr>
-                                                    <th style="color:black; font-family: roboto; text-align: center">Thứ tự</th>
-                                                                                                     
-                                                    <th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
-                                                    <th style="color:black; font-family: roboto; text-align: center">Số lượng</th>
-                                                    <th style="color:black; font-family: roboto; text-align: center">Giá</th>
-                                                    <th style="color:black; font-family: roboto; text-align: center">Thành tiền</th>
-
-
-                                                </tr>
-                                                <?php
-                                                $i=0;
-                                                
-                                                while($row_donhang = mysqli_fetch_array($sql_select))
-                                                {
-                                                    $i++;
-
+                                                    <table style="margin-left: 50px">
+                                                        <tr>
+                                                            <th>Tên khách hàng<span class="required">*:</span></th><th><?php echo $row["tenkhach"] ;?><th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Mã đơn hàng<span class="required">*:</span></th><th><input type="text" name="txtdonhang" value="<?php echo $id ;?>" style="border: none;"></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Thời gian đặt<span class="required">*:</span></th><th><?php echo $row1['ngaydat'] ;?><th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Tổng tiền<span class="required">*:</span></th><th><?php echo number_format($row1['tongtien']).'₫'  ;?><th>
+                                                        </tr>
+                                                    </table><br>
                                                     
+                                                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 50px;"> 
+                                                        <h3 class="summary-title" style=" font-family: roboto">CHI TIẾT ĐƠN HÀNG</h3>
 
+                                                        <?php
+                                                        $sql_select = mysqli_query($conn,"SELECT donhang.donhangid,tensanpham, chitietdonhang.gia,chitietdonhang.soluong,thanhtien, sanpham.sanphamid FROM chitietdonhang JOIN donhang on donhang.donhangid=chitietdonhang.donhangid  JOIN sanpham on chitietdonhang.sanphamid=sanpham.sanphamid Where chitietdonhang.donhangid='$id' ORDER BY donhang.ngaydat DESC");
                                                     
-                                                ?> 
-                                                <tr>
-                                                    <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
-                                                    
-                                                    <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['tensanpham']; ?></td>                                    
-                                                    <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['soluong'] ?></td>
-                                                    <td style=" font-family: roboto; text-align: center"><?php echo number_format($row_donhang["gia"]).'₫';?></td>
-                                                    <td style=" font-family: roboto; text-align: center"><?php echo number_format($row_donhang["thanhtien"]).'₫';?></td>
-                                                
-                                                
+                                                        ?>
+                                                        <table class="table table-bordered ">
+                                                            <tr>
+                                                                <th style="color:black; font-family: roboto; text-align: center">Thứ tự</th>
+                                                                <th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
+                                                                <th style="color:black; font-family: roboto; text-align: center">Số lượng yêu cầu</th>
+                                                                <th style="color:black; font-family: roboto; text-align: center">Hình ảnh đi kèm</th>
+                                                                <th style="color:black; font-family: roboto; text-align: center">Chọn</th>
+                                                            </tr>
+                                                            <?php
+                                                            $i=0;
+                                                            
+                                                            while($row_donhang = mysqli_fetch_array($sql_select))
+                                                            {
+                                                                $i++;  
+                                                            ?> 
+                                                            <tr>
+                                                                <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>                                                
+                                                                <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['tensanpham']; ?></td>                                    
+                                                                <td style=" font-family: roboto; text-align: center"><input type="text"></td>                                    
+                                                                <td style=" font-family: roboto; text-align: center"><input name="txtAnhMinhHoa" type="file" class="form-control"></td>   
+                                                                <td style=" font-family: roboto; text-align: center"><input type="checkbox"></td>                                  
+                                                            </tr>                                                               
+                                                            <?php } ;?>
+                                                        </table>
+                                                    </div>
+                                                    </div>
+                                                                
+                                                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px;"> 
+                                                        <h3 class="summary-title" style=" font-family: roboto">YÊU CẦU</h3>
+                                                                
+                                                        <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Lựa chọn yêu cầu<span class="required">*</span></label>
+                                                                
+                                                        <select name ="txtdoitra"style="background-color:#FBF7EC; border-top-right-radius: 3px; border-bottom-right-radius: 3px; width: 435px; height: 27px; margin-left: 10px;">
+                                                        
+                                                        <option>---------Chọn yêu cầu đổi/trả--------</option>
+                                                        <?php 
+                                                        $sql = "
+                                                        SELECT * 
+                                                        FROM loaiyeucau";
+                                                        $dulieu = mysqli_query($ketnoi, $sql);
+                                                        $i=0;
+                                                            
+                                                        while ($row1 = mysqli_fetch_array($dulieu)) {
+                                                            $i++;
+                                                        ;?>
+                                                            <option value="<?php echo $row1["loaiyeucauid"];?>" style="text-align: center;font-size: 13pt"><span></span><?php echo $row1["tenyeucau"];?></span></option>
+                                                        
+                                                        <?php
+                                                            }
+                                                        
+                                                        ;?>
+                                                        
+                                                        </select>
+                                                        </div>
+                                                            
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do yêu cầu<span class="required">*</span></label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                            <textarea name="txtlydo"  style="width: 95%"></textarea>
+                                                            </div>
+                                                        </div>
 
-                                                </tr>
-                                                <?php } ;?>
-                                            </table>
-                                    
-                                
+                                                        <br><br><br>
+                                                            
+                                                        <div class="form-group" style="float: right;">
+                                                            <button type="submit" class="btn btn-primary" style="background-color: #017ee9; border-top-right-radius: 3px; border-bottom-right-radius: 3px;">Gửi yêu cầu</button>
+                                                        </div>
 
-
-              </div>
-          </div>
-                                 
-                                    
-                                        <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px;"> 
-                                        <h3 class="summary-title" style=" font-family: roboto">YÊU CẦU</h3></div>
-
-
-
- <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lựa chọn yêu cầu<span class="required">*</span></label>
-                            
-                        <select name ="txtdoitra"style="background-color:#FBF7EC; border-top-right-radius: 3px; border-bottom-right-radius: 3px; width: 435px; height: 27px; margin-left: 10px;">
-                        <option>---------Chọn yêu cầu đổi/trả--------</option>
-                        <?php 
-                        $sql = "
-                          SELECT * 
-                          FROM loaiyeucau";
-                           $dulieu = mysqli_query($ketnoi, $sql);
-                         $i=0;
-                            
-                        while ($row1 = mysqli_fetch_array($dulieu)) {
-                            $i++;
-                        ;?>
-                            <option value="<?php echo $row1["loaiyeucauid"];?>" style="text-align: center;font-size: 13pt"><span></span><?php echo $row1["tenyeucau"];?></span></option>
-                           
-                        <?php
-                            }
-                        
-                        ;?>
-                    </select>
-            
-  </div>
-                  
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do yêu cầu<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                      <textarea name="txtlydo"  style="width: 95%"></textarea>
-                    </div>
-                  </div>
-
-                  <br><br><br>
-                  
-
-                  
-
-                  
-
-                  <div class="form-group" style="float: right;">
-                                       <button type="submit" class="btn btn-primary" style="background-color: #017ee9; border-top-right-radius: 3px; border-bottom-right-radius: 3px;">Gửi yêu cầu</button>
-                  </div>
-                  <br>
-
-                </div>
-                </form></div>
- 
-                
-            
-            </div>
+                                                        <br>
+                                                    </div>
+                                                </form>
+                                            </div> 
+                                        </div>
                                     </div><!-- End .col-md-6 -->
-                                </div><!-- End .row -->
-                            <!-- End .product-details-top -->
-                           
-
-                          
-                        </div><!-- End .col-lg-9 -->
-                    
-
-                       
+                            </div><!-- End .row -->                
+                        </div><!-- End .col-lg-9 -->   
                     </div><!-- End .row -->
-
                 </div><!-- End .container -->
             </div>
-        </div><!-- End .page-content -->
-        
+        </div><!-- End .page-content -->   
     </main><!-- End .main -->
+
     <?php
-require("footer.php");
-?>
+    require("footer.php");
+    ?>
     <!-- Plugins JS File -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
