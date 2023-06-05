@@ -12,7 +12,8 @@ $id=$_GET["id"];
 
 //Bước 3: Hiển thị các dữ liệu trong bảng tbl_sanpham ra đây
 $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid
-   WHERE a.danhmucid = ".$id  ;
+WHERE a.soluong <> 0 and a.danhmucid = 1";
+
 
 
 $dulieu = mysqli_query($ketnoi, $sql);
@@ -34,7 +35,7 @@ $row = mysqli_fetch_array($dulieu);
                 <div class="container">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php" style="font-family:roboto">Trang chủ</a></li>
-                    <li class="breadcrumb-item" style="font-family:roboto">Chi tiết sản phẩm</li>
+                    <li class="breadcrumb-item" style="font-family:roboto">Danh mục sản phẩm</li>
                     <li class="breadcrumb-item" style="font-family:roboto"><?php echo $row['tendanhmuc']?></li>
                     </ol>
                 </div><!-- End .container -->
@@ -60,7 +61,7 @@ $row = mysqli_fetch_array($dulieu);
                                 <div id="1" class="row product__filter">
                             <?php                                     
                             $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid
-                            WHERE a.danhmucid = ".$id  ;
+                            WHERE a.danhmucid = ".$id." and a.soluong>0"  ;
                             $dulieu = mysqli_query($ketnoi, $sql);
                         
                             while ($row = mysqli_fetch_array($dulieu)) 
@@ -76,11 +77,15 @@ $row = mysqli_fetch_array($dulieu);
                     <div class="product-action-vertical">
                         <a style="font-family:roboto" href="addtowishlist.php?id=<?php echo $row['sanphamid']?>" class="btn-product-icon btn-wishlist btn-expandable"><span>Thêm mục yêu thích</span></a>
                     </div><!-- End .product-action -->
+        
 
                     <div class="product-action product-action-dark">
-                        <a style="font-family:roboto"  href="addtocart.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-cart" title="Add to cart"><span>Thêm vào giỏ</span></a>
-                        <a style="font-family:roboto" href="popup/quickView.php?id=<?php echo $row["sanphamid"];?> && danhmuc_id=<?php echo $row["danhmucid"];?>" class="btn-product btn-quickview" title="Quick view"><span>Xem nhanh</span></a>
-                    </div><!-- End .product-action -->
+
+                        
+                                                    
+                      <a style="font-family:roboto"  href="addtocart.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-cart" title="Add to cart"><span>Thêm vào giỏ</span></a>
+                        <a style="font-family:roboto" href="popup/quickView.php?id=<?php echo $row["sanphamid"];?> && danhmucid=<?php echo $row["danhmucid"];?>" class="btn-product btn-quickview" title="Quick view"><span>Xem nhanh</span></a>
+                  </div>  <!-- End .product-action -->
                 </figure><!-- End .product-media -->
 
                 <div class="product-body">
@@ -94,12 +99,7 @@ $row = mysqli_fetch_array($dulieu);
                                     <?php if (number_format($row["giakhuyenmai"])>0) echo number_format($row["giakhuyenmai"]).'₫'; else echo number_format($row["giaban"]).'₫';?> 
                                                 <del style="color:gray" class="mx-2 font-weight-light"> <?php if (number_format($row["giakhuyenmai"])>0) echo   number_format($row["giaban"]).'₫'?></del>
                                     </div><!-- End .product-price -->
-                                    <div class="ratings-container">
-                                        <div class="ratings">
-                                            
-                                        </div><!-- End .ratings -->
-                                        
-                                    </div><!-- End .rating-container -->
+                                    
                                 </div><!-- End .product-body -->
                 </div>
                 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 05, 2023 lúc 12:08 PM
+-- Thời gian đã tạo: Th6 05, 2023 lúc 01:27 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.1.17
 
@@ -62,7 +62,7 @@ INSERT INTO `chitietdonhang` (`donhangid`, `sanphamid`, `gia`, `soluong`, `thanh
 CREATE TABLE `chitietyeucau` (
   `yeucauid` int(11) NOT NULL,
   `sanphamid` int(11) NOT NULL,
-  `soluong` int(11) NOT NULL,
+  `soluongyc` int(11) NOT NULL,
   `hinhanh` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -385,6 +385,58 @@ INSERT INTO `tinhtrang` (`tinhtrangid`, `tentinhtrang`) VALUES
 (3, 'Đã giao'),
 (4, 'Đã hủy');
 
+
+INSERT INTO `nhacungcap` (`nccid`, `tenncc`) VALUES
+(1, 'Acecook'),
+(2, 'AFC'),
+(3, 'Betagen'),
+(4, 'Biore'),
+(5, 'BOBBY'),
+(6, 'C2'),
+(7, 'Carrie Junior'),
+(8, 'Celano'),
+(9, 'Chinsu'),
+(10, 'Coca Cola'),
+(11, 'Coop Select'),
+(12, 'Cornetto'),
+(13, 'CP'),
+(14, 'Đầm Sen'),
+(15, 'Đang cập nhật!'),
+(16, 'GATSBY'),
+(17, 'Godbbawee'),
+(18, 'Grow Plus'),
+(19, 'Hoff'),
+(20, 'HUGGIES'),
+(21, 'Kim Bôi'),
+(22, 'KitKat'),
+(23, 'Koikeya'),
+(24, 'L.V.QUIRIT'),
+(25, 'Laurier'),
+(26, 'Lenger'),
+(27, 'Mead Johnson'),
+(28, 'Meat Deli'),
+(29, 'Merino'),
+(30, 'MILIKET'),
+(31, 'Mộc Châu'),
+(32, 'Nabati Richeese'),
+(33, 'Nakydaco'),
+(34, 'Nam Dương'),
+(35, 'Neptune'),
+(36, 'Nestle'),
+(37, 'Omachi'),
+(38, 'Orion'),
+(39, 'Pepsico'),
+(40, 'Safeguard'),
+(41, 'SG Food'),
+(42, 'Strongbow'),
+(43, 'TH Truemilk'),
+(44, 'Tiger'),
+(45, 'Unilever'),
+(46, 'VIETCOCO'),
+(47, 'Vinamilk'),
+(48, 'Yến Nhung'),
+(49, 'Zemlya'),
+(50, 'Zott');
 -- --------------------------------------------------------
 
 --
@@ -412,6 +464,7 @@ INSERT INTO `trangthai` (`trangthaiid`, `tentrangthai`) VALUES
 --
 -- Cấu trúc bảng cho bảng `yeucaudoitra`
 --
+
 
 CREATE TABLE `yeucaudoitra` (
   `yeucauid` int(11) NOT NULL,
