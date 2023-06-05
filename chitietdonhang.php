@@ -58,7 +58,6 @@ require("header.php");
 				<div class="container" style=" font-family: roboto, color: black">		
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12"style="font-size: 18px" >
-                            <h3>Chi tiết đơn hàng</h3>    
                             <?php
                             include("config/dbconfig.php");
                             $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
@@ -68,6 +67,9 @@ require("header.php");
                             $order = mysqli_fetch_all($order, MYSQLI_ASSOC);
                             $sql_select = mysqli_query($conn,"SELECT a.donhangid,a.sanphamid,a.gia,a.soluong,a.thanhtien,b.tensanpham  from chitietdonhang a  join sanpham b on a.sanphamid=b.sanphamid  where a.donhangid=".$id);         
                             ?>
+                            <div>
+                             <label style="font-size: 18px ; color: black"><strong >Mã đơn hàng: </strong><span> <?= $order[0]['donhangid'] ?></span></label>
+                            </div>
 
                             <div>
                              <label style="font-size: 18px ; color: black"><strong >Thời gian đặt hàng: </strong><span> <?= $order[0]['ngaydat'] ?></span></label>
@@ -83,13 +85,11 @@ require("header.php");
  
                             <?php 
                             }?>
-
-                            <div>
-                                <label style="font-size: 18px ; color: black"><strong>Trạng thái: </strong><span> <?= $order[0]['tentrangthai'] ?></span></label>
-                            </div>
-
                             <div>
                               <label style="font-size: 18px ; color: black"><strong>Tổng tiền: </strong><span> <?= $order[0]['tongtien'] ?> đồng</span></label>
+                            </div>
+                            <div>
+                                <label style="font-size: 18px ; color: black"><strong>Trạng thái: </strong><span> <?= $order[0]['tentrangthai'] ?></span></label>
                             </div>
                         </div>
 
@@ -99,7 +99,7 @@ require("header.php");
                             <th style="color:black; font-family: roboto; text-align: center">Mã giao dịch</th>													
                             <th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
                             <th style="color:black; font-family: roboto; text-align: center">Số lượng</th>
-                            <th style="color:black; font-family: roboto; text-align: center">Giá</th>
+                            <th style="color:black; font-family: roboto; text-align: center">Giá tiền</th>
                         </tr>
                         <?php
                         $i = 0;
@@ -111,7 +111,7 @@ require("header.php");
                             <td style=" font-family: roboto; text-align: center"><?php echo "$id"?></td>
                             <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang['tensanpham']; ?></a></td>									
                             <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['soluong'] ?></td>
-                            <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['gia'] ?></td>											
+                            <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['gia'] ?> đồng</td>											
                         </tr>
                         <?php
                         } 
