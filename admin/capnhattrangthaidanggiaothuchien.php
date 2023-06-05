@@ -35,8 +35,8 @@
 		$dulieu = mysqli_query($ketnoi, $sql1);
 		$row = mysqli_fetch_array($dulieu); 
 		
-		$sql=" 
-		UPDATE `donhang` SET `trangthaiid` = '3'  where donhangid='".$id."';";
+		$sql="
+		UPDATE `donhang` SET `trangthaiid` = '3', ngaynhan =current_timestamp()  where donhangid='".$id."';";
 		mysqli_query($ketnoi, $sql);
 	}
 
@@ -50,12 +50,12 @@
 		$dulieu = mysqli_query($ketnoi, $sql1);
 		$row = mysqli_fetch_array($dulieu); 
 		$sql=" 
-		UPDATE `donhang` SET `trangthaiid` = '4'  where donhangid='".$id."';";
+		UPDATE `donhang` SET `trangthaiid` = '4', ngaynhan =current_timestamp()  where donhangid='".$id."';";
 		mysqli_query($ketnoi, $sql);
 	}
 
 	echo '		<script type="text/javascript">
 			alert("Cập nhật thành công!!!");
-			window.location.href="danhsachdonhang.php";
+			window.location.href="order_list.php";
 		</script>';
 ;?>

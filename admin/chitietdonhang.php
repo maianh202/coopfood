@@ -60,9 +60,8 @@
                   $id=$_GET['id'];
                   $order = mysqli_query($conn, "SELECT * from donhang a join trangthai b on a.trangthaiid=b.trangthaiid join chitietdonhang c on a.donhangid=c.donhangid join khachhang d on a.khachhangid=d.khachhangid WHERE a.donhangid = ".$id);
                   $order = mysqli_fetch_all($order, MYSQLI_ASSOC);
-                  $sql_select = mysqli_query($conn,"SELECT * from chitietdonhang a join sanpham b on a.sanphamid=b.sanphamid  where a.donhangid=".$id);
-
-
+                  $sql_select = mysqli_query($conn,"SELECT a.donhangid,a.sanphamid,a.gia,a.soluong,a.thanhtien,b.tensanpham  from chitietdonhang a  join sanpham b on a.sanphamid=b.sanphamid  where a.donhangid=".$id);
+               
                   ?>
     
           <?php 
@@ -86,9 +85,7 @@
                           // Bước 1: Kết nối đến CSDL
                           include("../config/dbconfig.php");
                           $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-                           mysqli_set_charset($ketnoi, 'UTF8');
-
-                          //Bước 2: Hiển thị các dữ liệu trong bảng tbl_danh_muc ra đây
+                           mysqli_set_charset($ketnoi, 'UTF8');               
                           $sql = "
                             SELECT * 
                             FROM nhanvien";
@@ -113,17 +110,31 @@
 $dulieu3 = mysqli_query($ketnoi, $sql3);
 $row3 = mysqli_fetch_array($dulieu3);
  ?>
-
+<div>
 <label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
 
  <?php
      
          }?>
 
-              
+              <div>
             <label><strong>Người nhận: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
                         </div>
-           
+                        <div>
+                        <label><strong>Thời gian đặt hàng: </strong><span> <?= $order[0]['ngaydat'] ?></span></label>
+        </div>
+
+        <div>
+          <?php
+          if( $order[0]['tentrangthai']== 3 ||  $order[0]['tentrangthai']== 4) {
+          ?>
+            <label><strong>Thời gian hoàn thành: </strong><span> <?= $order[0]['ngaynhan'] ?></span></label>
+        </div>
+        
+        <?php 
+        }?>
+
+
 
 
         <div>
@@ -136,6 +147,9 @@ $row3 = mysqli_fetch_array($dulieu3);
 
         <div>
             <label><strong>Trạng thái: </strong><span> <?= $order[0]['tentrangthai'] ?></span></label>
+        </div>
+        <div>
+            <label><strong>Tổng tiền: </strong><span> <?= $order[0]['tongtien'] ?> đồng</span></label>
         </div>
         </div>
         </div>
@@ -195,7 +209,9 @@ if(  $order[0]['trangthaiid'] ==1)
 
             else {
               ?>
-     
+     <div class="form-group row">
+                 
+     <div class="col-md-9 col-sm-9 col-xs-12">
 <?php      
           
   $sql3 = "
@@ -204,12 +220,27 @@ if(  $order[0]['trangthaiid'] ==1)
 $dulieu3 = mysqli_query($ketnoi, $sql3);
 $row3 = mysqli_fetch_array($dulieu3);
   ?>   
-
- <label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
-
+    <div>
+    <label><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>   
+    </div>
+    <br>
+    <div>
      <label><strong>Người nhận: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
-                        </div>
+     </div>
            
+        <div>
+            <label><strong>Thời gian đặt hàng: </strong><span> <?= $order[0]['ngaydat'] ?></span></label>
+        </div>
+
+        <div>
+          <?php
+          if( $order[0]['tentrangthai']== 3 ||  $order[0]['tentrangthai']== 4) {
+          ?>
+            <label><strong>Thời gian hoàn thành: </strong><span> <?= $order[0]['ngaynhan'] ?></span></label>
+        </div>
+        
+        <?php 
+        }?>
 
 
         <div>
@@ -222,6 +253,9 @@ $row3 = mysqli_fetch_array($dulieu3);
 
         <div>
             <label><strong>Trạng thái: </strong><span> <?= $order[0]['tentrangthai'] ?></span></label>
+        </div>
+        <div>
+            <label><strong>Tổng tiền: </strong><span> <?= $order[0]['tongtien'] ?> đồng</span></label>
         </div>
         </div>
         </div>
@@ -266,7 +300,7 @@ if(  $order[0]['trangthaiid'] ==2 )
 
 <form method="post" action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $id;?>" enctype="multipart/form-data">
 
-          ?>  <button type="submit" value="" name ="thanhcong">Giao hàng thành công</button>
+          <button type="submit" value="" name ="thanhcong">Giao hàng thành công</button>
       
 <button type="submit"   value="" name="khongthanhcong">Giao hàng không thành công</button>
 </form>

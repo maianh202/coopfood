@@ -1,4 +1,11 @@
 
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,16 +55,15 @@
                       <thead>
                         <tr>
                           <th style="text-align: center;">#</th>
-                          <th style="text-align: center;">ID</th>
+                          <th style="text-align: center;">Mã đơn hàng</th>
                           <th style="text-align: center;">Tên người nhận</th>
                           <th style="text-align: center;">Địa chỉ</th>
                           <th style="text-align: center;">Điện thoại</th>
-                           <th style="text-align: center;">tên nhân viên</th>
-                           <th style="text-align: center;">Trạng thái</th>
+                          <th style="text-align: center;">Ngày đặt</th>
+                          <th style="text-align: center;">Ngày hoàn thành</th>
+                          <th style="text-align: center;">Tên nhân viên</th>
+                          <th style="text-align: center;">Trạng thái</th>
                           <th style="text-align: center;">Chi tiết đơn</th>
-                          <th style="text-align: center;">Cập nhật trạng thái</th>
-                          
-                          
                         </tr>
                       </thead>
                       <tbody>
@@ -66,16 +72,16 @@
                       include("../config/dbconfig.php");
                       $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
                       $id=$_GET['id'];
-
                       //Bước 2: Hiển thị các dữ liệu trong bảng tbl ra đây
                       $sql = "
-                        SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid  join trangthai d on a.trangthaiid= d.trangthaiid join nhanvien e on a.nhanvienid=e.nhanvienid where a.trangthaiid='$id'
-                        ORDER BY donhangid DESC ";
+                        SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid  join trangthai d on a.trangthaiid= d.trangthaiid left outer join nhanvien e on a.nhanvienid=e.nhanvienid where a.trangthaiid='$id'
+                        ORDER BY ngaynhan,ngaydat asc ";
+                     
 
                       $dulieu = mysqli_query($ketnoi, $sql);
                       $i = 0;
                       while ($row = mysqli_fetch_array($dulieu)) {
-                        $i++;
+                      $i++;
                       ;?>
                         <tr>
                           <th style="text-align: center;" scope="row"><?php echo $i;?></th>
@@ -83,17 +89,22 @@
                            <td style="text-align: center;"><?php echo $row["tenkhach"];?></td>
                            <td style="text-align: center;"><?php echo $row["diachi"];?></td>
                            <td style="text-align: center;"><?php echo $row["sdt"];?></td>
-                           <td style="text-align: center;"><?php if($row["trangthaiid"]=='1') {echo 'Đang cập nhật';} else { echo $row["tennhanvien"];}?></td>
-                           <td style="text-align: center;"><?php echo $row["tentrangthai"];?></td>
+                           <td style="text-align: center;"><?php echo $row["ngaydat"];?></td>
+                           <td style="text-align: center;"><?php if($row["trangthaiid"]=='1' || $row["trangthaiid"]=='2') {echo 'Đang cập nhật';} else { echo $row["ngaynhan"];}?></td>
+                           <td style="text-align: center;"><?php if($row["nhanvienid"]==null ) {echo 'Đang cập nhật';} else { echo $row["tennhanvien"];}?></td>                     
+                          <td style="text-align: center;"><?php echo $row["tentrangthai"];?></td>
                            <td style="text-align: center;"><a href="chitietdonhang.php?id=<?php echo $row['donhangid']?>" target="_blank">Chi tiết</a></td>
-                           <td> <button  method="post"action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $row['donhangid']?>" enctype="multipart/form-data"> Sửa </button> </td>
-                      
+                          
+                         
+                          
                         </tr>
                       <?php
                       }
                       ;?>
                       </tbody>
                     </table>
+
+
                   </div>
                 </div>
               </div>
