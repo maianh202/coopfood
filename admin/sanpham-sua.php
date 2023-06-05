@@ -106,9 +106,7 @@
                     </div>
                   </div>
                   <br><br><br><br>
-
-
-                    <div class="form-group">
+                  <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Danh mục sản phẩm<span class="required">*</span></label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
                         <select name="txtDmsp">
@@ -118,30 +116,25 @@
                         $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
                          mysqli_set_charset($ketnoi, 'UTF8');
 
-                     // Bước 2: Lấy dữ liệu từ trên đường đẫn
+                        // Bước 2: Lấy dữ liệu từ trên đường đẫn
                         $id = $_GET["id_sanpham"];
 
-                        $sql = "
-                          SELECT * 
-                          FROM danhmuc";
-                         
-                             $dulieu = mysqli_query($ketnoi, $sql);
+                        $sql = "SELECT * FROM danhmuc";
+                          
+                        $dulieu = mysqli_query($ketnoi, $sql);
                         while ($row1 = mysqli_fetch_array($dulieu)) {
                             if($row["danhmucid"]==$row1["danhmucid"]) {
-                        ;?>
+                            ;?>
                             <option value="<?php echo $row1["danhmucid"];?>" selected><?php echo $row1["tendanhmuc"];?></option>
-                        <?php
+                            <?php
                             } else {
-                        ;?>
+                            ;?>
                             <option value="<?php echo $row1["danhmucid"];?>"><?php echo $row1["tendanhmuc"];?></option>
-                        <?php
+                            <?php
                             }
                         }
-                        ;?>
+                            ;?>
                         </select>
-
-             
-
                     </div>
                   </div>
                   

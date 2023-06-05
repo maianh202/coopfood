@@ -75,7 +75,7 @@
                       $dulieu = mysqli_query($ketnoi, $sql);
                       $i = 0;
                       while ($row = mysqli_fetch_array($dulieu)) {
-                      $i++;
+                        $i++;
                       ;?>
                         <tr>
                           <th style="text-align: center;" scope="row"><?php echo $i;?></th>
@@ -94,8 +94,6 @@
                       ;?>
                       </tbody>
                     </table>
-
-
                   </div>
                 </div>
               </div>
