@@ -33,11 +33,9 @@ table{
     $id=$_GET["id"];
 
     //Bước 3: Hiển thị các dữ liệu trong bảng tbl_sanpham ra đây
-    $sql = "
-    SELECT * 
-    FROM sanpham 
-    WHERE sanpham_id = ".$id  ;
-    
+   $sql = "SELECT *
+FROM sanpham
+WHERE sanphamid = ".$id;
     $dulieu = mysqli_query($ketnoi, $sql);
           //  $product = mysqli_fetch_assoc($dulieu);
     $row = mysqli_fetch_array($dulieu);
@@ -52,7 +50,7 @@ table{
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Trang chủ</a></li>
                     <li class="breadcrumb-item">Chi tiết sản phẩm</li>
-                    <li class="breadcrumb-item"><?php echo $row["ten_sp"] ?></li>
+                    <li class="breadcrumb-item"><?php echo $row["tensanpham"] ?></li>
                 </ol>
             </div><!-- End .container -->
         </nav><!-- End .breadcrumb-nav -->
@@ -66,39 +64,46 @@ table{
                                 <div class="col-md-6">
                                     <div class="product-gallery">
                                         <figure class="product-main-image">
-                                            <img src="assets/<?php echo $row["hinh_anh"];?>" alt="product image" data-zoom-image="assets/<?php echo $row["hinhanh_zoom"];?>" id="product-zoom">     
+                                            <img src="assets/<?php echo $row["hinhanh"];?>" alt="product image" data-zoom-image="assets/<?php echo $row["hinhanhzoom"];?>" id="product-zoom">     
                                         </figure><!-- End .product-main-image -->
                                     </div><!-- End .product-gallery -->
                                 </div><!-- End .col-md-6 -->
 
                                 <div class="col-md-6" >
                                     <div class="product-details product-details-sidebar" style="font-size:20px">
-                                        <h1 class="product-title"><?php echo $row["ten_sp"] ?></h1><!-- End .product-title -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width:<?php echo $row["rate"];?> ;"></div>
-                                            </div><!-- End .ratings -->
-                                        </div>
+                                        <h1 class="product-title"><?php echo $row["tensanpham"] ?></h1><!-- End .product-title -->
+                                           
+<div> <a> Nhà cung cấp: </a>
+    <?php
+                                    
+                                    
+                                            $sql = "SELECT * FROM sanpham a JOIN nhacungcap b ON a.nccid=b.nccid WHERE a.sanphamid= ".$id;
+                                        
+                                            $dulieu = mysqli_query($ketnoi, $sql);
+                                            while ($rowcc = mysqli_fetch_array($dulieu)) 
+                                            {
+                                            ;?>
+                                            
+                                   <a href="index.php" style="font-family:roboto"> <?php echo $rowcc['tenncc'];?> </a>
+                                     <del class="mx-2 font-weight-light" style="color:#99a2aa; font-size:20px"> </del>
+
+                                <?php };?> 
+                            </div>
+
+                                        
                                             <!-- End .rating-container -->
                                         <p class="mb-3">
                                             <span class="product-price" >
-                                                <?php if (number_format($row["khuyenmai"])>0) echo number_format($row["khuyenmai"]).'₫'; else echo number_format($row["giaban"]).'₫';?> 
-                                                <del class="mx-2 font-weight-light" style="color:#99a2aa; font-size:20px"> <?php if (number_format($row["khuyenmai"])>0) echo   number_format($row["giaban"]).'₫'?></del>
+                                                <?php if (number_format($row["giakhuyenmai"])>0) echo number_format($row["giakhuyenmai"]).'₫'; else echo number_format($row["giaban"]).'₫';?> 
+                                                <del class="mx-2 font-weight-light" style="color:#99a2aa; font-size:20px"> <?php if (number_format($row["giakhuyenmai"])>0) echo   number_format($row["giaban"]).'₫'?></del>
+                                                 
                                             </span>
 
                                         </p>
-                                        <div>
-                                            <strong style="color:#d70018 ;font-size: 20px">Khuyến mãi</strong>
-                                            <ul class="" style="list-style-type:disc ; color:#000">
-                                                <li><a>Lì xì ngay 360.000đ áp dụng đến 31/01</a></li>
-                                                <li><a>Giảm thêm tới 300.000đ khi thanh toán qua VNPAY</a></li>
-                                                <li><a>Tặng hộp may mắn - số lượng có hạn</a></li>
-                                            </ul>
-                                        </div><!-- End .product-content -->                                   
-                                            <p style="color:#000;font-size: 20px;font-family:roboto" for="color">Màu sắc: <?php echo $row["color"];?></p>
-                                            <div class="details-filter-row details-row-size">
-                                                <p style="color:#000;font-size: 20px;font-family:roboto" for="ram">RAM: <?php echo $row["ram"];?></p>
-                                            </div><!-- End .details-filter-row -->
+                                    
+                                                      
+                                       
+
                                             <form action="addtocart.php" method="GET">
 
                                             <div class="product-details-action">
@@ -106,14 +111,14 @@ table{
                                                     <label for="qty" style="color:#000">Số lượng</label>
                                                     <div class="product-details-quantity">
                                                         <input type="number"  class="form-control" value="1" name="slg">
-                                                        <input type="hidden" name="id" value="<?php echo $row["sanpham_id"]?>">
+                                                        <input type="hidden" name="id" value="<?php echo $row["sanphamid"]?>">
                                                     </div><!-- End .product-details-quantity -->
+ <button type="submit" href="addtocart.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></button>
 
-                                                    <button type="submit" href="addtocart.php?id=<?php echo $row['sanpham_id']?>" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></button>
                                                 </div><!-- End .details-action-col -->
 
                                                 <div class="details-action-wrapper">
-                                                    <a href="addtowishlist.php?id=<?php echo $row['sanpham_id']?>" class="btn-product btn-wishlist" title="Wishlist"><span>Thêm vào mục yêu thích</span></a>
+                                                    <a href="addtowishlist.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-wishlist" title="Wishlist"><span>Thêm vào mục yêu thích</span></a>
                             
                                                 </div><!-- End .details-action-wrapper -->
                                             </div><!-- End .product-details-action -->   
@@ -128,55 +133,16 @@ table{
                                     <li class="nav-item" >
                                         <a class="nav-link" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab" aria-controls="product-desc-tab" aria-selected="true" style="font-size: 20px;font-family:roboto">MÔ TẢ SẢN PHẨM</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="product-info-link" data-toggle="tab" href="#product-info-tab" role="tab" aria-controls="product-info-tab" aria-selected="false" style="font-size: 20px;font-family:roboto">THÔNG SỐ KỸ THUẬT</a>
-                                    </li>
+                                    
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link" style="text-align: left; font-size: 16px">
                                         <div class="product-desc-content" >
-                                        <?php echo $row["chitiet"];?>
+                                        <?php echo $row["mota"];?>
                                         </div><!-- End .product-desc-content -->
                                     </div><!-- .End .tab-pane -->
                                     <div style="text-align: left; font-size: 16px; font-color:#666" class="tab-pane fade table" id="product-info-tab" role="tabpanel" aria-labelledby="product-info-link" >
-                                        <table class="table table-striped table-bordered"  >
-                                            <tr>
-                                                <td>Kích thước màn hình</td>
-                                                <td><?php echo $row['kichthuocman']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Công nghệ màn hình</td>
-                                                <td><?php echo $row['congngheman']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Camera sau</td>
-                                                <td><?php echo $row['cam_sau']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cam trước</td>
-                                                <td><?php echo $row['cam_truoc']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td> Chipset</td>
-                                                <td><?php echo $row['chipset']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pin</td>
-                                                <td><?php echo $row['pin']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hệ điều hành</td>
-                                                <td><?php echo $row['hedieuhanh']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>RAM</td>
-                                                <td><?php echo $row['ram']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bộ nhớ trong</td>
-                                                <td><?php echo $row['bonhotrong']; ?></td>
-                                            </tr>
-                                        </table>
+                                        
 
                                     </div><!-- .End .tab-pane -->                                                           
                                 </div><!-- End .tab-content -->
@@ -192,9 +158,9 @@ table{
                                     <h4 class="widget-title" style="color: #fcb941; font-weight: bold">Sản phẩm liên quan</h4><!-- End .widget-title -->
                                     <?php
                                     
-                                    $dm= $row["danhmuc_id"];
-                                            $sql = "SELECT DISTINCT * FROM sanpham a JOIN danhmuc b ON a.danhmuc_id=b.danhmuc_id WHERE a.danhmuc_id='$dm'
-                                            AND sanpham_id NOT LIKE '$id'
+                                    $dm= $row["danhmucid"];
+                                            $sql = "SELECT DISTINCT * FROM sanpham a JOIN danhmuc b ON a.danhmucid=b.danhmucid WHERE a.danhmucid='$dm'
+                                            AND sanphamid NOT LIKE '$id'
                                              ORDER BY  RAND() LIMIT 4";
                                             $dulieu = mysqli_query($ketnoi, $sql);
                                             while ($rowlq = mysqli_fetch_array($dulieu)) 
@@ -204,16 +170,16 @@ table{
 
                                         <div class="product product-sm">
                                             <figure class="product-media">
-                                                <a href="product.php?id=<?php echo $rowlq["sanpham_id"];?>">
-                                                <img src="assets/<?php echo $rowlq["hinh_anh"];?>" alt="product image" >
+                                                <a href="product.php?id=<?php echo $rowlq["sanphamid"];?>">
+                                                <img src="assets/<?php echo $rowlq["hinhanh"];?>" alt="product image" >
                                                 </a>
                                             </figure>
 
                                             <div class="product-body">
-                                                <h5 class="product-title"><a href="product.php?id=<?php echo $rowlq["sanpham_id"];?>"><?php echo $rowlq["ten_sp"]?></a></h5><!-- End .product-title -->
+                                                <h5 class="product-title"><a href="product.php?id=<?php echo $rowlq["sanphamid"];?>"><?php echo $rowlq["tensanpham"]?></a></h5><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    <?php if (number_format($rowlq["khuyenmai"])>0) echo number_format($rowlq["khuyenmai"]).'₫'; else echo number_format($rowlq["giaban"]).'₫';?> 
-                                                    <del class="mx-2 font-weight-light" style="color:#99a2aa; font-size:small"> <?php if (number_format($rowlq["khuyenmai"])>0) echo   number_format($rowlq["giaban"]).'₫'?></del>
+                                                    <?php if (number_format($rowlq["giakhuyenmai"])>0) echo number_format($rowlq["giakhuyenmai"]).'₫'; else echo number_format($rowlq["giaban"]).'₫';?> 
+                                                    <del class="mx-2 font-weight-light" style="color:#99a2aa; font-size:small"> <?php if (number_format($rowlq["giakhuyenmai"])>0) echo   number_format($rowlq["giaban"]).'₫'?></del>
                                                 </div><!-- End .product-price -->
                                             </div><!-- End .product-body -->
                                         </div><!-- End .product product-sm -->
@@ -221,7 +187,7 @@ table{
                                     </div><!-- End .products -->
                                     <?php };
                                            ?>
-                                    <a href="category.php?id=<?php echo $row["danhmuc_id"];?>" class="btn btn-outline-dark-3"><span>View More Products</span><i class="icon-long-arrow-right"></i></a>
+                                    <a href="category.php?id=<?php echo $row["danhmucid"];?>" class="btn btn-outline-dark-3"><span>View More Products</span><i class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .widget widget-products -->
                                      <div class="widget widget-banner-sidebar">
                                     <div class="banner-sidebar-title">SunPhone</div>
