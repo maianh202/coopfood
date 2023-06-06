@@ -34,7 +34,7 @@ $khachhang=$_SESSION['khachhangid']
                                     <div class="right_col" role="main">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12"> 
-                                                <form action="./guiyeucau.php" style=" margin: 5px; border-color: black;" method="post" enctype="multipart/form-data">
+                                                <form onsubmit = "return validateCheckbox();" action="xuliyeucau.php?id=<?php echo $id ;?>" style=" margin: 5px; border-color: black;" method="post" enctype="multipart/form-data">
                                                     <h3 style="color: #005DAC ;text-align: center; margin: 50px 50px 25px 25px" >Yêu cầu đổi trả</h3>
                                                     <div class="col-md-12 col-sm-12 col-xs-12"> 
                                                     <h3 class="summary-title" style=" font-family: roboto">THÔNG TIN ĐƠN HÀNG</h3>
@@ -78,7 +78,7 @@ $khachhang=$_SESSION['khachhangid']
                                                             <tr>
                                                                 <th style="color:black; font-family: roboto; text-align: center">Thứ tự</th>
                                                                 <th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
-                                                                <th style="color:black; font-family: roboto; text-align: center">Số lượng yêu cầu</th>
+                                                                <th style="color:black; font-family: roboto; text-align: center">Số lượng</th>
                                                                 <th style="color:black; font-family: roboto; text-align: center">Hình ảnh đi kèm</th>
                                                                 <th style="color:black; font-family: roboto; text-align: center">Chọn</th>
                                                             </tr>
@@ -92,9 +92,9 @@ $khachhang=$_SESSION['khachhangid']
                                                             <tr>
                                                                 <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>                                                
                                                                 <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['tensanpham']; ?></td>                                    
-                                                                <td style=" font-family: roboto; text-align: center"><input type="text"></td>                                    
-                                                                <td style=" font-family: roboto; text-align: center"><input name="txtAnhMinhHoa" type="file" class="form-control"></td>   
-                                                                <td style=" font-family: roboto; text-align: center"><input type="checkbox"></td>                                  
+                                                                <td style=" font-family: roboto; text-align: center;"><input class="soluong" type="number" min="1" max="<?php echo $row_donhang['soluong']; ?>"></td>                                    
+                                                                <td style=" font-family: roboto; text-align: center"><input name="anhminhchung" type="file" class="form-control"></td>   
+                                                                <td style=" font-family: roboto; text-align: center"><input class="checkbox" type="checkbox" name="checkbox" ></td>                                  
                                                             </tr>                                                               
                                                             <?php } ;?>
                                                         </table>
@@ -105,35 +105,35 @@ $khachhang=$_SESSION['khachhangid']
                                                         <h3 class="summary-title" style=" font-family: roboto">YÊU CẦU</h3>
                                                                 
                                                         <div class="form-group">
-                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Lựa chọn yêu cầu<span class="required">*</span></label>
-                                                                
-                                                        <select name ="txtdoitra"style="background-color:#FBF7EC; border-top-right-radius: 3px; border-bottom-right-radius: 3px; width: 435px; height: 27px; margin-left: 10px;">
-                                                        
-                                                        <option>---------Chọn yêu cầu đổi/trả--------</option>
-                                                        <?php 
-                                                        $sql = "
-                                                        SELECT * 
-                                                        FROM loaiyeucau";
-                                                        $dulieu = mysqli_query($ketnoi, $sql);
-                                                        $i=0;
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Lựa chọn yêu cầu<span class="required">*</span></label>
+                                                                    
+                                                            <select required name ="txtdoitra" style="background-color:#FBF7EC; border-top-right-radius: 3px; border-bottom-right-radius: 3px; width: 435px; height: 27px; margin-left: 10px;">
                                                             
-                                                        while ($row1 = mysqli_fetch_array($dulieu)) {
-                                                            $i++;
-                                                        ;?>
-                                                            <option value="<?php echo $row1["loaiyeucauid"];?>" style="text-align: center;font-size: 13pt"><span></span><?php echo $row1["tenyeucau"];?></span></option>
-                                                        
-                                                        <?php
-                                                            }
-                                                        
-                                                        ;?>
-                                                        
-                                                        </select>
+                                                                <option disabled selected value style="text-align: center">Chọn yêu cầu đổi/trả</option>
+                                                                <?php 
+                                                                $sql = "
+                                                                SELECT * 
+                                                                FROM loaiyeucau";
+                                                                $dulieu = mysqli_query($ketnoi, $sql);
+                                                                $i=0;
+                                                                    
+                                                                while ($row1 = mysqli_fetch_array($dulieu)) {
+                                                                    $i++;
+                                                                ;?>
+                                                                    <option value="<?php echo $row1["loaiyeucauid"];?>" style="text-align: center;font-size: 13pt"><span></span><?php echo $row1["tenyeucau"];?></span></option>
+                                                                
+                                                                <?php
+                                                                    }
+                                                                
+                                                                ;?>
+                                                            
+                                                            </select>
                                                         </div>
                                                             
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do yêu cầu<span class="required">*</span></label>
                                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                            <textarea name="txtlydo"  style="width: 95%"></textarea>
+                                                            <textarea name="txtlydo" style="width: 95%" required></textarea>
                                                             </div>
                                                         </div>
 
@@ -169,5 +169,34 @@ $khachhang=$_SESSION['khachhangid']
     <script src="assets/js/owl.carousel.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        function validateCheckbox() {
+            const checkboxes = document.getElementsByClassName("checkbox");
+            const soluongs = document.getElementsByClassName("soluong");
+            var checked = false;
+            for(var i = 0; i < checkboxes.length; i++){
+                if (checkboxes[i].checked){
+                    checked = true;
+                    break;
+                }
+            }
+
+            if (checked){
+                for(var i = 0; i < checkboxes.length; i++){
+                    if (checkboxes[i].checked){
+                        if(soluongs[i].value == ""){
+                            alert("Vui lòng điền số lượng!");
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }else{
+                alert("Vui lòng chọn sản phẩm!");
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>

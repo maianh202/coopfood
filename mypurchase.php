@@ -128,7 +128,7 @@ require("header.php");
  
 <?php 
 }
- else {;?>
+else {;?>
  	<button class="btn btn-primary" style="background-color: white; border-top-right-radius: 3px; border-bottom-right-radius: 3px;" disabled="disabled"><span style="color: red;">Hoàn thành đơn hàng</span></button>
 
 <?php 
@@ -144,13 +144,6 @@ require("header.php");
 													?> 
 												</table>
 											</div>
-									    
-							
-							
-
-							
-
-
 										</div>
         							</div>
 									</div>

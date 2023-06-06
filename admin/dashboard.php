@@ -127,7 +127,7 @@
                             <div class="col-md-3" style="margin-bottom: 30px;">
                                 <div class="card bg-primary text-white mb-4"  style="border-radius: 5px; background-color: #ff3838">
                                 <br>
-                                    <div style="margin-left: 15px; font-size: 16px">Quản trị yêu cầu đổi - trả <br>(<?php echo $soluong5 ;?> đơn hàng)</div>
+                                    <div style="margin-left: 15px; font-size: 16px">Quản trị yêu cầu đổi - trả <br>(<?php echo $soluong5 ;?> yêu cầu)</div>
                                     <hr style="margin-bottom: 5px">
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a style="margin-left: 15px;color: white;" href="yeu-cau-doi-tra.php"><u>Chi tiết</u></a>                                     
