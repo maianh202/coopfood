@@ -92,9 +92,9 @@ $khachhang=$_SESSION['khachhangid']
                                                             <tr>
                                                                 <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>                                                
                                                                 <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['tensanpham']; ?></td>                                    
-                                                                <td style=" font-family: roboto; text-align: center;"><input class="soluong" type="number" min="1" max="<?php echo $row_donhang['soluong']; ?>"></td>                                    
-                                                                <td style=" font-family: roboto; text-align: center"><input name="anhminhchung" type="file" class="form-control"></td>   
-                                                                <td style=" font-family: roboto; text-align: center"><input class="checkbox" type="checkbox" name="checkbox" ></td>                                  
+                                                                <td style=" font-family: roboto; text-align: center;"><input name="soluong<?php echo $i ;?>" class="soluong" type="number" min="1" max="<?php echo $row_donhang['soluong']; ?>"></td>                                    
+                                                                <td style=" font-family: roboto; text-align: center"><input name="anhminhchung<?php echo $i ;?>" type="file" class="form-control"></td>   
+                                                                <td style=" font-family: roboto; text-align: center"><input class="checkbox" type="checkbox" name="checkbox<?php echo $i ;?>"></td>                                  
                                                             </tr>                                                               
                                                             <?php } ;?>
                                                         </table>
