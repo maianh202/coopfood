@@ -357,7 +357,7 @@ p,tr,h2,a, h4, h3, li {
                         <figure class="product-media">                 
                             <a href="product.php?id=<?php echo $row["sanphamid"];?>">
                                 <img src="assets/<?php echo $row["hinhanh"];?>" >                                           
-                            <
+                        
                             <div class="product-action-vertical">
                                 <a style="font-family:roboto" href="addtowishlist.php?id=<?php echo $row['sanphamid']?>" class="btn-product-icon btn-wishlist btn-expandable"><span>Thêm mục yêu thích</span></a>
                             </div><!-- End .product-action-vertical -->
@@ -369,7 +369,7 @@ p,tr,h2,a, h4, h3, li {
 
                         <div class="product-body">
                             <div class="product-cat" style="font-family:roboto" >
-                                <a style="font-family:roboto" href="#"><?php echo $row["tendanhmuc"];?></a>
+                                <a style="font-family:roboto" href="category.php?id=<?php echo $row['danhmucid'];?>"><?php echo $row["tendanhmuc"];?></a>
                             </div><!-- End .product-cat -->
                             <h3 class="product-title"><a style="font-family:roboto"  href="product.php?id=<?php echo $row["sanphamid"];?>"><?php echo $row["tensanpham"];?></a></h3><!-- End .product-title -->
                             <br>
@@ -421,7 +421,7 @@ p,tr,h2,a, h4, h3, li {
                                             
                             <div class="product-body">
                                 <div class="product-cat" style="font-family:roboto" >
-                                    <a style="font-family:roboto" href="#"><?php echo $row["tendanhmuc"];?></a>
+                                    <a style="font-family:roboto" href="category.php?id=<?php echo $row['danhmucid'];?>"><?php echo $row["tendanhmuc"];?></a>
                                 </div><!-- End .product-cat -->
                                     <h3 class="product-title"><a style="font-family:roboto"  href="product.php?id=<?php echo $row["sanphamid"];?>"><?php echo $row["tensanpham"];?></a></h3><!-- End .product-title -->
                                     <br>
@@ -453,8 +453,8 @@ p,tr,h2,a, h4, h3, li {
                     <div class="tab-pane p-0 fade show active" id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
                         <div id="1" class="row product__filter">
                             <?php                                     
-                                $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid
-                                ORDER BY rand() limit 8 ";
+                                $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid join nhacungcap c on a.nccid=a.nccid where a.nccid=45
+                                ORDER BY rand() limit 4";
                                 $dulieu = mysqli_query($conn, $sql);
                                 while ($row = mysqli_fetch_array($dulieu)) 
                                 {
@@ -480,7 +480,7 @@ p,tr,h2,a, h4, h3, li {
 
                                             <div class="product-body">
                                                 <div class="product-cat" style="font-family:roboto" >
-                                                    <a style="font-family:roboto" href="#"><?php echo $row["tendanhmuc"];?></a>
+                                                    <a style="font-family:roboto" href="category.php?id=<?php echo $row["danhmucid"];?>"><?php echo $row["tendanhmuc"];?></a>
                                                 </div><!-- End .product-cat -->
                                                     <h3 class="product-title"><a style="font-family:roboto"  href="product.php?id=<?php echo $row["sanphamid"];?>"><?php echo $row["tensanpham"];?></a></h3><!-- End .product-title -->
                                                     <br>
@@ -497,13 +497,13 @@ p,tr,h2,a, h4, h3, li {
                                     </div>
                             <?php 
                             }; ?>
-
-
-                        </div>
-                
                         <div style="text-align: right">
                             <a href="category.php?id=<?php echo $row["danhmucid"];?>" class="btn btn-outline-dark-3"><span>Xem thêm </span><i class="icon-long-arrow-right" ></i></a>
                         </div>
+
+                        </div>
+                
+
                     </div>
 
                 
@@ -511,8 +511,8 @@ p,tr,h2,a, h4, h3, li {
                         <div id="1" class="row product__filter">
                 
                         <?php                                     
-                            $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid
-                            ORDER BY rand() limit 8 ";
+                            $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid join nhacungcap c on a.nccid=a.nccid where a.nccid=11
+                            ORDER BY rand() limit 4 ";
                             $dulieu = mysqli_query($conn, $sql);
                             while ($row = mysqli_fetch_array($dulieu)) 
                             {
@@ -538,7 +538,7 @@ p,tr,h2,a, h4, h3, li {
 
                                     <div class="product-body">
                                         <div class="product-cat" style="font-family:roboto" >
-                                            <a style="font-family:roboto" href="#"><?php echo $row["tendanhmuc"];?></a>
+                                            <a style="font-family:roboto" href="category.php?id=<?php echo $row['danhmucid'];?>"><?php echo $row["tendanhmuc"];?></a>
                                         </div><!-- End .product-cat -->
                                         <h3 class="product-title"><a style="font-family:roboto"  href="product.php?id=<?php echo $row["sanphamid"];?>"><?php echo $row["tensanpham"];?></a></h3><!-- End .product-title -->
                                         <br>                                     
@@ -548,16 +548,18 @@ p,tr,h2,a, h4, h3, li {
                                     </div><!-- End .product-body -->
                                 </div>
                             </div>
-                        <?php 
-                            }; ?>
+                            <?php 
+                                }; ?>
+                            <div style="text-align: right">
+                            <a href="category.php?id=<?php echo $row["danhmucid"];?>" class="btn btn-outline-dark-3"><span style="text-align: right">Xem thêm </span><i class="icon-long-arrow-right" ></i></a>
                         </div>
                     </div>
 
-                    <div style="text-align: right">
-                        <a href="category.php?id=<?php echo $row["danhmucid"];?>" class="btn btn-outline-dark-3"><span>Xem thêm </span><i class="icon-long-arrow-right" ></i></a>
-                    </div>
+                </div>
 
-                </div><!-- .End .tab-pane -->
+
+
+            </div><!-- .End .tab-pane -->
             </div><!-- End container -->
         </main>
 
