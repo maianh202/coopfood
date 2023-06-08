@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png"/>
 
-    <title>Coop Food| Trang quản trị danh sách đơn hàng</title>
+    <title>Coop Food| Trang quản trị yêu cầu đổi trả</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
             <div class="right_col" role="main">
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                  <h1>QUẢN TRỊ YÊU CẦU</h1>
+                  <h1>QUẢN TRỊ YÊU CẦU ĐỔI - TRẢ</h1>
                   <div>
                    <table class="table table-bordered">
                       <thead>
@@ -50,7 +50,7 @@
                           
                           <th style="text-align: center;">Mã yêu cầu</th>
                           <th style="text-align: center;">Loại yêu cầu</th>
-                          <th style="text-align: center;">MÃ đơn hàng</th>
+                          <th style="text-align: center;">Mã đơn hàng</th>
                           <th style="text-align: center;">Khách hàng</th>
                           <th style="text-align: center;">Nhân viên xử lý</th>
                           <th style="text-align: center;">Lý do</th> 
@@ -67,6 +67,7 @@
                       // Bước 1: Kết nối đến CSDL
                       include("../config/dbconfig.php");
                       $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                   //   $id=$_GET['id'];
 
                       //Bước 2: Hiển thị các dữ liệu trong bảng tbl ra đây
                       $sql = "

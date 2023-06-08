@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 05, 2023 lúc 01:27 PM
+-- Thời gian đã tạo: Th6 08, 2023 lúc 11:49 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.1.17
 
@@ -63,8 +63,15 @@ CREATE TABLE `chitietyeucau` (
   `yeucauid` int(11) NOT NULL,
   `sanphamid` int(11) NOT NULL,
   `soluongyc` int(11) NOT NULL,
-  `hinhanh` varchar(50) NOT NULL
+  `hinhanhyeucau` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietyeucau`
+--
+
+INSERT INTO `chitietyeucau` (`yeucauid`, `sanphamid`, `soluongyc`, `hinhanhyeucau`) VALUES
+(1, 14, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -93,24 +100,25 @@ INSERT INTO `chucvu` (`chucvuid`, `tenchucvu`) VALUES
 
 CREATE TABLE `danhmuc` (
   `danhmucid` int(11) NOT NULL,
-  `tendanhmuc` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `tendanhmuc` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `hinhanhdm` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`danhmucid`, `tendanhmuc`) VALUES
-(1, 'Rau củ, Trái cây'),
-(2, 'Thịt, Trứng, Hải Sản'),
-(3, 'Thức Ăn Chế Biến, Bún Tươi'),
-(4, 'Thực Phẩm Đông, Mát'),
-(5, 'Bánh, Kẹo, Snack'),
-(6, 'Sữa, Sản Phẩm Từ Sữa'),
-(7, 'Thức Uống'),
-(8, 'Gia Vị, Gạo, Thực Phẩm Khô'),
-(9, 'Sản Phẩm Cho Bé'),
-(10, 'Chăm Sóc Cá Nhân');
+INSERT INTO `danhmuc` (`danhmucid`, `tendanhmuc`, `hinhanhdm`) VALUES
+(1, 'Rau củ, Trái cây', 'images/category/rau.png'),
+(2, 'Thịt, Trứng, Hải Sản', 'images/category/thit.png'),
+(3, 'Thức Ăn Chế Biến, Bún Tươi', 'images/category/thucphamchebien.png'),
+(4, 'Thực Phẩm Đông, Mát', 'images/category/thucphamdonglanh.png'),
+(5, 'Bánh, Kẹo, Snack', 'images/category/banh.png'),
+(6, 'Sữa, Sản Phẩm Từ Sữa', 'images/category/sua.png'),
+(7, 'Thức Uống', 'images/category/douong.png'),
+(8, 'Gia Vị, Gạo, Thực Phẩm Khô', 'images/category/giavi.png'),
+(9, 'Sản Phẩm Cho Bé', 'images/category/sanphamchobe.png'),
+(10, 'Chăm Sóc Cá Nhân', 'images/category/chamsoccanhan.png');
 
 -- --------------------------------------------------------
 
@@ -214,6 +222,62 @@ CREATE TABLE `nhacungcap` (
   `nccid` int(11) NOT NULL,
   `tenncc` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `nhacungcap`
+--
+
+INSERT INTO `nhacungcap` (`nccid`, `tenncc`) VALUES
+(1, 'Acecook'),
+(2, 'AFC'),
+(3, 'Betagen'),
+(4, 'Biore'),
+(5, 'BOBBY'),
+(6, 'C2'),
+(7, 'Carrie Junior'),
+(8, 'Celano'),
+(9, 'Chinsu'),
+(10, 'Coca Cola'),
+(11, 'Coop Select'),
+(12, 'Cornetto'),
+(13, 'CP'),
+(14, 'Đầm Sen'),
+(15, 'Đang cập nhật!'),
+(16, 'GATSBY'),
+(17, 'Godbbawee'),
+(18, 'Grow Plus'),
+(19, 'Hoff'),
+(20, 'HUGGIES'),
+(21, 'Kim Bôi'),
+(22, 'KitKat'),
+(23, 'Koikeya'),
+(24, 'L.V.QUIRIT'),
+(25, 'Laurier'),
+(26, 'Lenger'),
+(27, 'Mead Johnson'),
+(28, 'Meat Deli'),
+(29, 'Merino'),
+(30, 'MILIKET'),
+(31, 'Mộc Châu'),
+(32, 'Nabati Richeese'),
+(33, 'Nakydaco'),
+(34, 'Nam Dương'),
+(35, 'Neptune'),
+(36, 'Nestle'),
+(37, 'Omachi'),
+(38, 'Orion'),
+(39, 'Pepsico'),
+(40, 'Safeguard'),
+(41, 'SG Food'),
+(42, 'Strongbow'),
+(43, 'TH Truemilk'),
+(44, 'Tiger'),
+(45, 'Unilever'),
+(46, 'VIETCOCO'),
+(47, 'Vinamilk'),
+(48, 'Yến Nhung'),
+(49, 'Zemlya'),
+(50, 'Zott');
 
 -- --------------------------------------------------------
 
@@ -380,63 +444,12 @@ CREATE TABLE `tinhtrang` (
 --
 
 INSERT INTO `tinhtrang` (`tinhtrangid`, `tentinhtrang`) VALUES
-(1, 'Đang chuẩn bị hàng'),
-(2, 'Đang giao'),
-(3, 'Đã giao'),
-(4, 'Đã hủy');
+(1, 'Đang chờ xử lý'),
+(2, 'Phê duyệt'),
+(3, 'Đang xử lý'),
+(4, 'Thành công'),
+(5, 'Từ chối yêu cầu');
 
-
-INSERT INTO `nhacungcap` (`nccid`, `tenncc`) VALUES
-(1, 'Acecook'),
-(2, 'AFC'),
-(3, 'Betagen'),
-(4, 'Biore'),
-(5, 'BOBBY'),
-(6, 'C2'),
-(7, 'Carrie Junior'),
-(8, 'Celano'),
-(9, 'Chinsu'),
-(10, 'Coca Cola'),
-(11, 'Coop Select'),
-(12, 'Cornetto'),
-(13, 'CP'),
-(14, 'Đầm Sen'),
-(15, 'Đang cập nhật!'),
-(16, 'GATSBY'),
-(17, 'Godbbawee'),
-(18, 'Grow Plus'),
-(19, 'Hoff'),
-(20, 'HUGGIES'),
-(21, 'Kim Bôi'),
-(22, 'KitKat'),
-(23, 'Koikeya'),
-(24, 'L.V.QUIRIT'),
-(25, 'Laurier'),
-(26, 'Lenger'),
-(27, 'Mead Johnson'),
-(28, 'Meat Deli'),
-(29, 'Merino'),
-(30, 'MILIKET'),
-(31, 'Mộc Châu'),
-(32, 'Nabati Richeese'),
-(33, 'Nakydaco'),
-(34, 'Nam Dương'),
-(35, 'Neptune'),
-(36, 'Nestle'),
-(37, 'Omachi'),
-(38, 'Orion'),
-(39, 'Pepsico'),
-(40, 'Safeguard'),
-(41, 'SG Food'),
-(42, 'Strongbow'),
-(43, 'TH Truemilk'),
-(44, 'Tiger'),
-(45, 'Unilever'),
-(46, 'VIETCOCO'),
-(47, 'Vinamilk'),
-(48, 'Yến Nhung'),
-(49, 'Zemlya'),
-(50, 'Zott');
 -- --------------------------------------------------------
 
 --
@@ -465,7 +478,6 @@ INSERT INTO `trangthai` (`trangthaiid`, `tentrangthai`) VALUES
 -- Cấu trúc bảng cho bảng `yeucaudoitra`
 --
 
-
 CREATE TABLE `yeucaudoitra` (
   `yeucauid` int(11) NOT NULL,
   `donhangid` int(11) NOT NULL,
@@ -473,10 +485,17 @@ CREATE TABLE `yeucaudoitra` (
   `khachhangid` int(11) NOT NULL,
   `ngayyeucau` datetime NOT NULL,
   `lydo` varchar(200) NOT NULL,
-  `ngayhoanhthanh` datetime NOT NULL,
+  `ngayhoanthanh` datetime DEFAULT NULL,
   `tinhtrangid` int(11) NOT NULL,
   `loaiyeucauid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `yeucaudoitra`
+--
+
+INSERT INTO `yeucaudoitra` (`yeucauid`, `donhangid`, `nhanvienid`, `khachhangid`, `ngayyeucau`, `lydo`, `ngayhoanthanh`, `tinhtrangid`, `loaiyeucauid`) VALUES
+(1, 2, NULL, 1, '2023-06-07 23:25:28', 'hết hạn sử dụng', NULL, 1, 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -606,7 +625,7 @@ ALTER TABLE `loaiyeucau`
 -- AUTO_INCREMENT cho bảng `nhacungcap`
 --
 ALTER TABLE `nhacungcap`
-  MODIFY `nccid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `nccid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT cho bảng `nhanvien`
@@ -624,7 +643,7 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT cho bảng `tinhtrang`
 --
 ALTER TABLE `tinhtrang`
-  MODIFY `tinhtrangid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tinhtrangid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `trangthai`
@@ -636,7 +655,7 @@ ALTER TABLE `trangthai`
 -- AUTO_INCREMENT cho bảng `yeucaudoitra`
 --
 ALTER TABLE `yeucaudoitra`
-  MODIFY `yeucauid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `yeucauid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

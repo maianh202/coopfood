@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png"/>
 
-    <title> Trang sửa người dùng </title>
+    <title> Trang sửa trạng thái đơn hàng</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,71 +39,68 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
          
-            <?php 
+                  <?php 
                   include("top.php");
-
-            // Bước 1: Kết nối đến CSDL 
                   include("../config/dbconfig.php");
                   $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
 
                   // Bước 2: Lấy dữ liệu từ trên đường đẫn
-                  $id = $_GET["id_nd"];
-
-                  //Bước 3: Hiển thị các dữ liệu trong bảng tbl_tin_tuc ra đây
+                  $id = $_GET["id"];
                   $sql = "
                     SELECT * 
-                    FROM khachhang
-                    WHERE khach_id = ".$id;
-                  
+                    FROM donhang
+                    WHERE donhangid = ".$id;  
                   $dulieu = mysqli_query($ketnoi, $sql);
-
                   $row = mysqli_fetch_array($dulieu);
-          ;?> 
+                  ;?> 
             <!-- page content -->
             <div class="right_col" role="main">
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                  <h1>SỬA NGƯỜI DÙNG</h1>
-                  <form method="post" action="admin-sua-thuc-hien.php" enctype="multipart/form-data">
-             
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên người dùng<span class="required">*</span></label>
+                  <h1>SỬA TRẠNG THÁI ĐƠN HÀNG</h1>
+                  <form method="post" action="suadonhangthuchien.php" enctype="multipart/form-data">
+              
+                  <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã đơn hàng<span class="required">*</span></label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                      <input name="txtTen" type="text" class="form-control" value="<?php echo $row["hoten"];?>">
-                    </div>
-                  </div>
-                  <br><br><br>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ Email<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                      <input name="txtemail" type="text" class="form-control" value="<?php echo $row["email"];?>">
-                    </div>
-                  </div>
-                  <br><br><br>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                      <input name="txtsdt" type="text" class="form-control" value="<?php echo $row["sdt"];?>">
-                    </div>
-                  </div>
-                  <br><br><br>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                      <input name="txtdiachi" type="text" class="form-control" value="<?php echo $row["diachi"];?>">
+                      <input name="txtdhid" type="text" class="form-control" value="<?php echo $row["donhangid"];?>" readonly>
+
                     </div>
                   </div>
 
-                  <br><br><br>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Password<span class="required">*</span></label>
+                  <div class="form-group row">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Danh mục sản phẩm<span class="required">*</span></label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                      <input name="txtPassword" type="text" class="form-control" value="<?php echo $row["password"];?>">
+                      <select name="txtDmtt">
+                        <?php
+                        // Bước 1: Kết nối đến CSDL
+                        include("../config/dbconfig.php");
+                        $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                        mysqli_set_charset($ketnoi, 'UTF8');
+                        $id = $_GET["id"];
+                          $sql = "
+                          SELECT * 
+                          FROM trangthai";
+                         
+                             $dulieu = mysqli_query($ketnoi, $sql);
+                        while ($row1 = mysqli_fetch_array($dulieu)) {
+                            if($row["trangthaiid"]==$row1["trangthaiid"]) {
+                        ;?>
+                            <option value="<?php echo $row1["trangthaiid"];?>" selected><?php echo $row1["tentrangthai"];?></option>
+                        <?php
+                            } else {
+                        ;?>
+                            <option value="<?php echo $row1["trangthaiid"];?>"><?php echo $row1["tentrangthai"];?></option>
+                        <?php
+                            }
+                        }
+                        ;?>
+                      </select>
                     </div>
                   </div>
-                   <br><br><br>
+
                   <div class="form-group" style="float: right;">
-                   <input type="hidden" name="txtID" value='<?php echo $row["khach_id"];?>'>
+                    <input type="hidden" name="txtID" value='<?php echo $row["donhangid"];?>'>
                     <button type="submit">Sửa</button>
                   </div>
                   <br>
@@ -113,11 +110,11 @@
               </div>
             </div>
             <!-- /page content -->
-
             <?php include("bottom.php");?>
+          </div>
+        </div>
       </div>
     </div>
-
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->

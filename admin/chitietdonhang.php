@@ -73,7 +73,7 @@
           {
           ?>
               <div class="row">
-        <form method="post" action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $id;?>" enctype="multipart/form-data">
+        <form method="post" action="capnhatdonhang.php?id=<?php echo $id;?>" enctype="multipart/form-data">
 
           
             
@@ -234,7 +234,7 @@ $row3 = mysqli_fetch_array($dulieu3);
 
         <div>
           <?php
-          if( $order[0]['tentrangthai']== 3 ||  $order[0]['tentrangthai']== 4) {
+          if( $order[0]['trangthaiid']== 3 ||  $order[0]['trangthaiid']== 4) {
           ?>
             <label><strong>Thời gian hoàn thành: </strong><span> <?= $order[0]['ngaynhan'] ?></span></label>
         </div>
@@ -298,7 +298,7 @@ if(  $order[0]['trangthaiid'] ==2 )
           ?>
          
 
-<form method="post" action="capnhattrangthaidanggiaothuchien.php?id=<?php echo $id;?>" enctype="multipart/form-data">
+<form method="post" action="capnhatdonhang.php?id=<?php echo $id;?>" enctype="multipart/form-data">
 
           <button type="submit" value="" name ="thanhcong">Giao hàng thành công</button>
       

@@ -77,7 +77,6 @@
                         SELECT * FROM donhang a join khachhang b on a.khachhangid =b.khachhangid  join trangthai d on a.trangthaiid= d.trangthaiid left outer join nhanvien e on a.nhanvienid=e.nhanvienid where a.trangthaiid='$id'
                         ORDER BY ngaynhan,ngaydat asc ";
                      
-
                       $dulieu = mysqli_query($ketnoi, $sql);
                       $i = 0;
                       while ($row = mysqli_fetch_array($dulieu)) {

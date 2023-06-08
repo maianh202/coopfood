@@ -44,8 +44,8 @@
                 $sql2 = "SELECT * FROM donhang  as a join trangthai as b on a.trangthaiid=b.trangthaiid where a.trangthaiid=2";
                 $sql3 = "SELECT * FROM donhang  as a join trangthai as b on a.trangthaiid=b.trangthaiid where a.trangthaiid=3";
                 $sql4 = "SELECT * FROM donhang  as a join trangthai as b on a.trangthaiid=b.trangthaiid where a.trangthaiid=4";
-                $sql5 = "SELECT * FROM donhang  as a join trangthai as b on a.trangthaiid=b.trangthaiid where a.trangthaiid=5";
-
+                $sql5 = "SELECT * FROM yeucaudoitra  as a join loaiyeucau as b on a.loaiyeucauid=b.loaiyeucauid where a.loaiyeucauid=1";
+                $sql6 = "SELECT * FROM yeucaudoitra  as a join loaiyeucau as b on a.loaiyeucauid=b.loaiyeucauid where a.loaiyeucauid=2";
                 //3. thuc thi cau lech truy van
                 $noidungtruyvan = mysqli_query($ketnoi, $sql);
                 $noidungtruyvan1 = mysqli_query($ketnoi, $sql1);
@@ -53,24 +53,22 @@
                 $noidungtruyvan3 = mysqli_query($ketnoi, $sql3);
                 $noidungtruyvan4 = mysqli_query($ketnoi, $sql4);
                 $noidungtruyvan5 = mysqli_query($ketnoi, $sql5);
-
+                $noidungtruyvan6 = mysqli_query($ketnoi, $sql6);
 
                 $row1 = mysqli_fetch_array($noidungtruyvan1);
                 $row2 = mysqli_fetch_array($noidungtruyvan2);
                 $row3 = mysqli_fetch_array($noidungtruyvan3);
                 $row4 = mysqli_fetch_array($noidungtruyvan4);
                 $row5 = mysqli_fetch_array($noidungtruyvan5);
-
-       
-
-                //4. dem so tin tuc
+                $row6 = mysqli_fetch_array($noidungtruyvan6);
+    
                 $soluong = mysqli_num_rows($noidungtruyvan);
                 $soluong1 = mysqli_num_rows($noidungtruyvan1);
                 $soluong2 = mysqli_num_rows($noidungtruyvan2);
                 $soluong3 = mysqli_num_rows($noidungtruyvan3);
                 $soluong4 = mysqli_num_rows($noidungtruyvan4);
                 $soluong5 = mysqli_num_rows($noidungtruyvan5);
-
+                $soluong6 = mysqli_num_rows($noidungtruyvan6);
                 ;?>
            
 
@@ -99,11 +97,11 @@
                   
                   <li><a><i class="fa fa-table"></i> Quản trị yêu cầu đổi-trả <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="yc-doi-hang.php">Yêu cầu đổi hàng</a></li>
-                        <li><a href="yc-tra-hang.php">Yêu cầu trả hàng</a></li>
+                        <li><a href="yeu-cau-doi-tra.php?id=<?php echo $row5["loaiyeucauid"];?>">Yêu cầu đổi hàng(<?php echo $soluong5 ;?>)</a></li>
+                        <li><a href="yeu-cau-doi-tra.php?id=<?php echo $row6["loaiyeucauid"];?>">Yêu cầu trả hàng(<?php echo $soluong6 ;?>)</a></li>
                     </ul>
                   </li>
-
+                  
                   <li><a><i class="fa fa-table"></i> Quản trị đơn hàng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="danhsachdonhang.php?id=<?php echo $row1["trangthaiid"];?>">Đang xử lý(<?php echo $soluong1 ;?>)</a></li>
