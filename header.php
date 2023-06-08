@@ -386,14 +386,26 @@ if(isset($_POST['dangnhap_home'])) {  //tồn tại khi ấn submit đăng nhậ
                                 </div><!-- End .header-search-wrapper -->
                             </form>
                         </div><!-- End .header-search -->
-                        
-                        <div class="dropdown cart-dropdown" style="float: right; position: relative">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                <a href=""><i class="icon-shopping-cart"></i></a>
-                                <span class="cart-count">2</span>
-                            </a>
+                                                
+                        <div class="dropdown cart-dropdown">
+                            <a href="wishlist.php" class="dropdown-toggle">
+                                <div class="icon">
+                                    <i class="icon-heart-o"></i>
+                                    <span class="cart-count"><?php echo count($wishlist)?></span>
+                                </div>
+                                <p style="font-family:roboto "></p>
+                            </a>    
+                        </div>
 
-                        </div><!-- End .cart-dropdown -->
+                        <div class="dropdown cart-dropdown">
+                            <a href="cart.php" class="dropdown-toggle">
+                                <div class="icon">
+                                    <i class="icon-shopping-cart"></i>
+                                    <p class="cart-count"><?php echo count($cart)?></p>
+                                </div>
+                                <p style="font-family:roboto "></p>
+                            </a>    
+                        </div>
                     </div><!-- End .header-right -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .header-middle -->

@@ -190,11 +190,11 @@ WHERE sanphamid = ".$id;
                                     <a href="category.php?id=<?php echo $row["danhmucid"];?>" class="btn btn-outline-dark-3"><span>View More Products</span><i class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .widget widget-products -->
                                      <div class="widget widget-banner-sidebar">
-                                    <div class="banner-sidebar-title">SunPhone</div>
+                                    <div class="banner-sidebar-title">Coop Food</div>
                                     
                                     <div class="banner-sidebar banner-overlay">
-                                        <a href="#">
-                                            <img src="https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/tin-tuc/142048/Originals/%E1%BA%A3nh_Viber_2021-12-31_18-53-01-599.jpg" alt="banner">
+                                        <a href="index.php">
+                                            <img src="assets/images/thieunhi.jpg" alt="">
                                         </a>
                                     </div>  
                                 </div> 

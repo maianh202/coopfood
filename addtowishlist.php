@@ -12,14 +12,14 @@
 	if(isset($_GET['id'])){
 		$id = $_GET['id'];
 	}
-	$query = mysqli_query($conn, "SELECT * FROM sanpham WHERE sanpham_id = $id");
+	$query = mysqli_query($conn, "SELECT * FROM sanpham WHERE sanphamid = $id");
 	if($query){
 	$product = mysqli_fetch_assoc($query);
 	}
 	
 	$item =[
 		'id'=> $product['sanphamid'],
-		'name'=>$product['ténanpham'],
+		'name'=>$product['tensanpham'],
 		'img'=>$product['hinhanh'],
 		'gia'=>($product['giakhuyenmai'] > 0) ? $product['giakhuyenmai'] 	: $product['giaban'],
 	    'sl'=> $product['soluong']

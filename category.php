@@ -12,7 +12,7 @@ $id=$_GET["id"];
 
 //Bước 3: Hiển thị các dữ liệu trong bảng tbl_sanpham ra đây
 $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid
-WHERE a.soluong <> 0 and b.danhmucid = '1'";
+WHERE a.soluong <> 0 and b.danhmucid = '".$id."' ";
 
 
 
