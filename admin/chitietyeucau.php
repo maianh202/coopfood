@@ -156,7 +156,13 @@
                                             <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang["sanphamid"]?></td>
                                             <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang["tensanpham"]; ?></a></td>									
                                             <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang["soluongyc"] ?></td>
-                                            <td><img style="height: 100px; width: auto;" src="<?php echo $row_donhang["hinhanhyeucau"];?>"></td>								
+                                            <?php 
+                                                $sql_select2 = mysqli_query($conn,"SELECT *  from chitietyeucau a  join sanpham b on a.sanphamid=b.sanphamid  where a.yeucauid=".$id);
+                                                $row_donhang2 = mysqli_fetch_assoc($sql_select2); 
+
+                                                $base64Image = base64_encode($row_donhang2['hinhanhyeucau']);
+                                                $imgSrc = 'data:' . $row_donhang2['hinhanhContent'] . ';base64,' . $base64Image ?>
+                                            <td><img src="<?php echo $imgSrc; ?>" alt="" style = "width: 300px;   display: block; margin-left: auto; margin-right: auto;"></td>								
                                         </tr>
                                         <?php
                                         } 

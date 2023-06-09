@@ -37,6 +37,22 @@
             $sql_insert2 = "INSERT INTO `chitietyeucau`(`yeucauid`, `sanphamid`, `soluongyc`) 
             VALUES ('".$id_yeucau."', '".$row2['sanphamid']."', '".$_POST['soluong'.$i]."')";
             mysqli_query($ketnoi, $sql_insert2);
+
+            if (isset($_FILES['anhminhchung'.$i])) {
+                $image = $_FILES['anhminhchung'.$i];
+            
+                //$name = $image['anhminhchung'.$i];
+                $tmp_name = $image['tmp_name'];
+            
+                $data = file_get_contents($tmp_name);
+                $data = $ketnoi->real_escape_string($data);
+            
+                $contentType = mime_content_type($tmp_name);
+
+                $sql_insert3 = "UPDATE `chitietyeucau` SET `hinhanhyeucau` = '".$data."', `hinhanhContent` =  '".$contentType."'
+                WHERE `sanphamid` = '".$row2['sanphamid']."'";
+                mysqli_query($ketnoi, $sql_insert3);
+            }
         }
     }
     
