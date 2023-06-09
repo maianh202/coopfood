@@ -142,7 +142,7 @@ $row3 = mysqli_fetch_array($dulieu3);
         </div>
 
         <div>
-            <label><strong>Địa chỉ: </strong><span> <?= $order[0]['diachi'] ?></span></label>
+            <label><strong>Địa chỉ: </strong><span> <?=   $order[0]["chitietdiachi"].', '.$order[0]["phuong"].', ' .$order[0]["quan"].', ' .$order[0]["thanhpho"]  ;?></span></label>
         </div>
 
         <div>

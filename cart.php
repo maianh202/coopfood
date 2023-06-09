@@ -117,60 +117,25 @@ require("header.php");
                                                 <td>
                                                         <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
                                                         <label class="custom-control-label" for="free-shipping">Phí ship:</label>
-                                                </td>
-                                                <td>20,000</td>
-
-                                            </tr><!-- End .summary-shipping-row -->
-                                            <tr class="summary-shipping-row" style=" font-family: roboto">
-                                            <?php $thanhtoan=0;
-                                            if(isset($_POST["giamgia"]))
-                                            {
-                                            if($_POST["giamgia"]=="LIXI2023sun")
-                                            {
-                                                ?>
-                                                <td>
-                                                        <input type="radio" id="ma" name="ma" class="custom-control-input">
-                                                        <label class="custom-control-label" for="ma">Mã giảm giá:</label>
-                                                </td>
-                                                <td>500,000</td>
-
-                                            </tr>
-                                            <tr class="summary-total" style=" font-family: roboto">
-                                                <td>Tổng:</td>
-                                                <td><?php echo number_format($thanhtoan=$_SESSION['tongtien'] +20000-500000) ?></td>
-                                            </tr><!-- End .summary-total -->
-                                            <?php $_SESSION['thanhtoan']=$thanhtoan;?>
-
-                                            <?php
-                                            }
-                                            elseif($_POST["giamgia"]!="LIXI2023sun") {
-                                                ?>
-                                                <td>
-                                                        <input type="radio" id="ma" name="ma" class="custom-control-input">
-                                                        <label class="custom-control-label" for="ma">Mã giảm giá:</label>
-                                                </td>
-                                                <td>0</td>
-
-                                            </tr>
-                                            <tr class="summary-total" style=" font-family: roboto">
-                                                <td>Tổng:</td>
-                                                <td><?php echo number_format($thanhtoan=$_SESSION['tongtien'] +20000) ?></td>
-                                            </tr><!-- End .summary-total --> 
-                                            <?php $_SESSION['thanhtoan']=$thanhtoan;?>
-                                            <?php
-                                            }
-                                            
-                                        }
-                                        else{?>
-                                            <tr class="summary-total" style=" font-family: roboto">
+                                                </td> <?php 
+                                                if($_SESSION['tongtien']>=200000){ ?>
+                                                    <td>Miễn ship</td>
+                                                    <tr class="summary-total" style=" font-family: roboto">
                                             <td>Tổng:</td>
-                                            <td><?php echo number_format($thanhtoan=$_SESSION['tongtien'] +20000) ?></td>
+                                            <td><?php echo number_format($thanhtoan=$_SESSION['tongtien']) ?></td>
                                             </tr><!-- End .summary-total --> 
-                                            <?php $_SESSION['thanhtoan']=$thanhtoan;?>
+                                            <?php $_SESSION['thanhtoan']=$thanhtoan;
 
-                                        <?php
-                                        }
-                                            ?>
+                                                  }
+                                                else {?>
+                                                    <td>20,000</td>
+                                                    <tr class="summary-total" style=" font-family: roboto">
+                                                    <td>Tổng:</td>
+                                                    <td><?php echo number_format($thanhtoan=$_SESSION['tongtien'] +20000) ?></td>
+                                                    </tr><!-- End .summary-total --> 
+                                                    <?php $_SESSION['thanhtoan']=$thanhtoan;
+                                                } ?>
+                                                </tr>
                                         </tbody>
                                     </table><!-- End .table table-summary -->
  

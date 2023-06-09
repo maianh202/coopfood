@@ -86,7 +86,7 @@
                           <th style="text-align: center;" scope="row"><?php echo $i;?></th>
                           <td style="text-align: center;"><?php echo $row["donhangid"];?></td>
                            <td style="text-align: center;"><?php echo $row["tenkhach"];?></td>
-                           <td style="text-align: center;"><?php echo $row["diachi"];?></td>
+                           <td style="text-align: center;"><?php echo  $row["chitietdiachi"].', '.$row["phuong"].', ' .$row["quan"].', ' .$row["thanhpho"]  ;?></td>
                            <td style="text-align: center;"><?php echo $row["sdt"];?></td>
                            <td style="text-align: center;"><?php echo $row["ngaydat"];?></td>
                            <td style="text-align: center;"><?php if($row["trangthaiid"]=='1' || $row["trangthaiid"]=='2') {echo 'Đang cập nhật';} else { echo $row["ngaynhan"];}?></td>

@@ -78,6 +78,8 @@ require("header.php");
 													</tr>
 
 													<?php
+													$sql1= mysqli_query($conn,"SELECT * FROM yeucaudoitra");
+													$row1 = mysqli_fetch_array($sql1);
 													$sql_select = mysqli_query($conn,"SELECT * FROM chitietdonhang join donhang  on chitietdonhang.donhangid= donhang.donhangid join trangthai on trangthai.trangthaiid=donhang.trangthaiid WHERE donhang.khachhangid='$id_khachhang' and trangthai.trangthaiid <= 4 GROUP BY chitietdonhang.donhangid");
 													$i=0;
 													while($row_donhang = mysqli_fetch_array($sql_select))
@@ -114,7 +116,7 @@ require("header.php");
 				
 															$songay= floor($datediff/(60*60*24));
 
-															if($songay<='7' and $row_donhang['trangthaiid']==3)
+															if($songay<='7' and $row_donhang['trangthaiid']==3 and $row1["donhangid"]<>$row_donhang['donhangid'])
 															{
     ;?>
     
@@ -126,6 +128,12 @@ require("header.php");
  	<button class="btn btn-primary" style="background-color: #017ee9; border-top-right-radius: 3px; border-bottom-right-radius: 3px;" disabled="disabled"><span>Yêu cầu đổi/trả</span></button>
 
  
+<?php 
+}
+else if ($row1["donhangid"]==$row_donhang['donhangid']) {
+	;?>
+ 	<button class="btn btn-primary" style="background-color: white; border-top-right-radius: 3px; border-bottom-right-radius: 3px;" disabled="disabled"><span style="color: red;">Đơn hàng đổi/trả</span></button>
+
 <?php 
 }
 else {;?>

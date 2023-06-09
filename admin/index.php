@@ -49,7 +49,7 @@ mysqli_query($conn,'set names utf8');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/logo1.png" />
+    <link rel="icon" href="images/coopfood.png" />
 
     <title>COOP FOOD |Trang đăng nhập </title>
 
@@ -68,15 +68,15 @@ mysqli_query($conn,'set names utf8');
    
   </head>
 
-  <body class="login" style="background-image: url('https://png.pngtree.com/background/20210715/original/pngtree-yellow-lanterns-watermelon-and-rice-dumplings-vietnamese-new-year-background-picture-image_1324245.jpg')";>
-
+  <body class="login" style="background-color: #28a927
+">
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
                <div class="col-md-12"></div>
                <form action="" method="post">
             <br><br>
-             <h1 style="color: black"><b>Hệ thống quản trị Coop Food </b></h1>
+             <h1 style="color: white"><b>Hệ thống quản trị Coop Food </b></h1>
               <div>
                 <input type="text" class="form-control" placeholder="Tên đăng nhập" name="taikhoan" required=""/>
               </div>
@@ -84,7 +84,7 @@ mysqli_query($conn,'set names utf8');
                 <input type="password" class="form-control" placeholder="Mật khẩu" name="matkhau" required="" />
               </div>
               <div>
-                <button style="background: #FB9901;border-color: black;padding: 10px;color:  #fff;border-radius: 10px;" name="dangnhap" type="submit">Đăng nhập hệ thống</button>
+                <button style="background: #dd3e04;border-color: white;padding: 10px;color:  #fff;border-radius: 10px;" name="dangnhap" type="submit">Đăng nhập hệ thống</button>
               </div>
 
             </form>

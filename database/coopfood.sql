@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 08, 2023 lúc 05:32 PM
+-- Thời gian đã tạo: Th6 09, 2023 lúc 08:04 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.1.17
 
@@ -51,7 +51,10 @@ INSERT INTO `chitietdonhang` (`donhangid`, `sanphamid`, `gia`, `soluong`, `thanh
 (4, 3, 13410, 3, 40230),
 (5, 60, 11700, 1, 11700),
 (6, 65, 33480, 1, 33480),
-(6, 49, 19530, 1, 19530);
+(6, 49, 19530, 1, 19530),
+(7, 5, 18810, 1, 18810),
+(8, 38, 9720, 2, 19440),
+(8, 67, 371970, 1, 371970);
 
 -- --------------------------------------------------------
 
@@ -147,12 +150,14 @@ CREATE TABLE `donhang` (
 --
 
 INSERT INTO `donhang` (`donhangid`, `khachhangid`, `nhanvienid`, `ngaydat`, `ngaynhan`, `tongtien`, `ghichu`, `trangthaiid`, `sdt`, `thanhpho`, `quan`, `phuong`, `chitietdiachi`) VALUES
-(1, 1, 1, '2023-06-01 00:00:00', '2023-06-05 16:18:45', 349040, '', 4, '034558864', NULL, NULL, NULL, 'HM'),
-(2, 1, 3, '2023-06-02 13:37:49', '2023-06-05 17:04:26', 422480, '', 3, '000000000252', NULL, NULL, NULL, 'HM'),
-(3, 2, 2, '2023-06-04 10:10:32', NULL, 215750, '', 2, '2541284184', NULL, NULL, NULL, 'LB'),
-(4, 2, NULL, '2023-06-04 10:11:48', NULL, 129620, '', 1, '5623546812', NULL, NULL, NULL, 'LB'),
-(5, 2, NULL, '2023-06-04 10:14:40', NULL, 31700, '', 1, '525463698', NULL, NULL, NULL, 'LB'),
-(6, 1, NULL, '2023-06-05 15:53:28', NULL, 73010, '', 1, '201201204512', NULL, NULL, NULL, 'LB');
+(1, 1, 1, '2023-06-01 00:00:00', '2023-06-05 16:18:45', 349040, '', 4, '034558864', 'Hà Nội', 'Hoàng Mai', 'Đại Kim', 'HM'),
+(2, 1, 3, '2023-06-02 13:37:49', '2023-06-05 17:04:26', 422480, '', 3, '000000000252', 'Hà Nội', 'Hoàng Mai', 'Đại Kim', 'Kim Giang'),
+(3, 2, 2, '2023-06-04 10:10:32', NULL, 215750, '', 2, '2541284184', 'Hà Nội', 'Thanh Xuân', 'Vũ Tông Phan', 'LB'),
+(4, 2, NULL, '2023-06-04 10:11:48', NULL, 129620, '', 1, '5623546812', 'Hà Nội', 'Xuân', '..', 'LB'),
+(5, 2, NULL, '2023-06-04 10:14:40', NULL, 31700, '', 1, '525463698', 'Hà Nội', 'Xuân', 'KG', 'LB'),
+(6, 1, NULL, '2023-06-05 15:53:28', NULL, 73010, '', 1, '201201204512', 'Hà Nội', 'Xuân', 'KG', 'LB'),
+(7, 1, NULL, '2023-06-09 11:45:42', NULL, 38810, '', 1, '0378588031', 'Hà Nội', 'Khương Đình', 'HM', 'số 10'),
+(8, 1, NULL, '2023-06-09 13:03:22', NULL, 391410, '', 1, '025536558', 'Hà Nội', 'xbcdfvsdf', 'sxdcfvg', 'sdfg');
 
 -- --------------------------------------------------------
 
@@ -364,7 +369,7 @@ INSERT INTO `sanpham` (`sanphamid`, `tensanpham`, `danhmucid`, `nccid`, `soluong
 (35, 'Bắp ngọt đông lạnh SGF gói 500g\r\n', 4, 41, 3000, 45000, 'Gói', 40500, 'images/sp/35.png', 'images/sp/35-big.png', NULL),
 (36, 'Khoai tây đông lạnh Farm Best Rosti Round 1kg', 4, 15, 3000, 104600, 'Gói', 94140, 'images/sp/36.png', 'images/sp/36-big.png', NULL),
 (37, 'Cá viên hồ lô đông lạnh Sài Gòn food 330g', 4, 15, 3000, 77100, 'Gói', 69390, 'images/sp/37.png', 'images/sp/37-big.png', NULL),
-(38, 'Đậu hủ trắng Coop Select 300g', 4, 11, 3000, 10800, 'Hộp', 9720, 'images/sp/38.png', 'images/sp/38-big.png', NULL),
+(38, 'Đậu hủ trắng Coop Select 300g', 4, 11, 2998, 10800, 'Hộp', 9720, 'images/sp/38.png', 'images/sp/38-big.png', NULL),
 (39, 'Bánh bao xá xíu Phú Mỹ 300g', 4, 15, 3000, 35300, 'Gói', 31770, 'images/sp/39.png', 'images/sp/39-big.png', NULL),
 (40, 'Măng trúc Quân tử 300g – Kim bôi', 4, 21, 3000, 51500, 'Gói', 46350, 'images/sp/40.png', 'images/sp/40-big.png', NULL),
 (41, 'Bánh gạo Orion khoai tây phô mai 100.8g', 5, 38, 3000, 21400, 'Gói', 19260, 'images/sp/41.png', 'images/sp/41-big.png', NULL),
@@ -393,7 +398,7 @@ INSERT INTO `sanpham` (`sanphamid`, `tensanpham`, `danhmucid`, `nccid`, `soluong
 (64, 'Rượu Soju Korice hương mận 12% 360ml', 7, 15, 3000, 61000, 'Chai', 54900, 'images/sp/64.png', 'images/sp/64-big.png', NULL),
 (65, 'Trà sữa đường nâu Nestea 8 gói x17g', 7, 36, 3000, 37200, 'Hộp', 33480, 'images/sp/65.png', 'images/sp/65-big.png', 'Thông tin sản phẩm<br>\nTrà sữa đường nâu Nestea lấy cảm hứng từ vùng đất Đài Loan  thủ phủ của món trà sữa lừng danh. Nestea nay giới thiệu trà sữa Nestea vị đường nâu. Hương vị đường nâu dịu nhẹ lôi cuốn kết hợp với vị đậm béo của sữa tạo nên một ly trà sữa đường nâu thơm ngon, dư vị ấn tượng.<br>\nĐẶC ĐIỂM NỔI BẬT<br>\nTrà sữa lấy cảm hứng từ hương vị trà sữa Đài Loan, mang đến cho người dùng hương vị trà sữa đường nâu đậm đà, thơm lừng.<br>\nSản phẩm chất lượng với thành phần được tuyển chọn thủ công, kĩ lưỡng cùng tiêu chuẩn cao cấp thuộc tập đoàn Nestlé<br>\nĐáp ứng nhu cầu trà sữa cho người tiêu dùng một cách nhanh chóng nhưng vẫn không làm mất đi vị trà đặc trưng.<br>\nTHÀNH PHẦN:Bột kem 34% (có chứa sữa contain milk), đường 30%, sữa bột tách béo một phần 17% (có chứa sữa  contain milk), maltodextrin, trà hòa tan 2,3%, hương đường nâu giống tự nhiên, chất tạo ngọt tổng hợp acesulfam kali, chất chống đông vón (170(i), 551).<br>\n HƯỚNG DẪN SỬ DỤNG<br>\n1 bịch 810g pha với 1 lít nước nóng, sau đó pha với 2 lít nước nguội, có thể thêm đá tùy khẩu vị<br>\nSử dụng nóng hoặc lạnh, phù hợp với sử dụng tiệc/cả gia đình, hoặc pha chế tại cửa hàng, công ty,…<br>\nLƯU Ý<br>\nSản phẩm có chứa sữa<br>\nNên uống ngay sau khi pha chế<br>\nKhông sử dụng cho người dị ứng với các thành phần của sản phẩm<br>\nCÁCH BẢO QUẢN: Bảo quản sản phẩm nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp.<br>\n Xuất xứ: Thụy Sỹ<br>\n Nơi sản xuất: Thái Lan<br>\n Ngày sản xuất: In trên bao bì sản phẩm<br>\n Hạn sử dụng: 12 tháng kể từ ngày sản xuất”<br>\n'),
 (66, 'Nescafe 3in1 mới, vị hài hoà không ngọt hộp 20 gói x 10g', 7, 36, 3000, 63500, 'Hộp', 57150, 'images/sp/66.png', 'images/sp/66-big.png', 'Thông tin sản phẩm<br>\nGiới thiệu Nescafé 3in1 công thức cải tiến mới. Thơm hơn, đậm đà hơn từ Robusta và Arabica. Cà phê sữa hòa tan thế hệ mới với công thức vàng kết hợp giữa hạt cà phê Robusta vị đậm đà và hạt Arabica thơm tinh tế, hòa cùng vị sữa thơm béo cho bạn trải nghiệm cà phê ngon trọn vẹn.<br>\n ĐẶC ĐIỂM NỔI BẬT<br>\n Nescafé 3in1 vị hài hòa không ngọt  với hương vị hài hòa giữa sữa và cà phê\n Phù hợp cho việc tùy chỉnh độ ngọt, mang đến cho người tiêu dùng trải nghiệm cà phê được cá nhân hóa tốt hơn hoặc cho những người tiêu dùng đang tìm kiếm một ly cà phê lành mạnh, tốt cho sức khỏe hơn<br>\n THÀNH PHẦN<br>\n Bột kem pha cà phê có chứa sữa contain milk, cà phê hòa tan Robusta và Arabica (15,5%), hương liệu tổng hợp, chất tạo ngọt tổng hợp acesulfam kali.<br>\n (*) Chỉ tiêu chất lượng chủ yếu: Hàm lượng cafein tối thiểu 0,37%<br>\n LƯU Ý<br>\nKhông dùng cho người dị ứng với các thành phần của sản phẩm.<br>\nKhông sử dụng sản phẩm quá hạn.<br>\nHƯỚNG DẪN SỬ DỤNG<br>\nKhi uống nóng, hòa một gói Nescafé 3in1 với 70ml nước nóng và khuấy đều.<br>\nKhi uống lạnh, chỉ cần pha hai gói với 70ml nước nóng và thêm vào 100g đá, từ từ khuấy đá với cà phê để đá tan đều<br>\nCÁCH BẢO QUẢN: Bảo quản sản phẩm nơi khô ráo và thoáng mát, tránh ánh nắng trực tiếp.<br>\n Xuất xứ: Thụy Sĩ<br>\n Nơi sản xuất: Việt Nam<br>\n Ngày sản xuất: In trên bao bì sản phẩm<br>\n Hạn sử dụng: 15 tháng kể từ ngày sản xuất.<br>\n'),
-(67, 'Nước táo lên men Strongbow vị dâu đen thùng 24 chai x 330ml', 7, 42, 3000, 413300, 'Thùng', 371970, 'images/sp/67.png', 'images/sp/67-big.png', 'Thông tin sản phẩm<br>\nĐôi nét về thương hiệu Strongbow<br>\nStrongbow là thương hiệu Cider lớn nhất Thế giới chính thức ra mắt thị trường vào năm 1960. Strongbow có nguồn gốc từ Châu  u mà cụ thể là nước Anh.<br>\nCác sản phẩm nước trái cây lên men với nhiều hương vị thơm ngon, hấp dẫn.<br>\nThành phần dinh dưỡng trong strongbow táo lon 330ml<br>\nThành phần dinh dưỡng của Strongbow chứa nhiều vitamin C, chất chống oxy hóa, hệ men lợi cho đường ruột và nhiều khoáng chất khác.<br>\nTrong 100ml strongbow táo có khoảng 56 Kcal.<br>\nThương hiệu: Strongbow (Việt Nam)<br>\nSản xuất tại: Việt Nam<br>\nLoại sản phẩm: Nước uống có cồn<br>\nNồng độ cồn: 4.5%<br>\nThể tích: 330ml<br>\nHương vị: dâu đen<br>\nĐóng gói: thùng<br>\nLưu ý: Sản phẩm dành cho người trên 18 tuổi và không dành cho phụ nữ mang thai. Thưởng thức có trách nhiệm, đã uống đồ uống có cồn thì không lái xe!<br>\n'),
+(67, 'Nước táo lên men Strongbow vị dâu đen thùng 24 chai x 330ml', 7, 42, 2999, 413300, 'Thùng', 371970, 'images/sp/67.png', 'images/sp/67-big.png', 'Thông tin sản phẩm<br>\nĐôi nét về thương hiệu Strongbow<br>\nStrongbow là thương hiệu Cider lớn nhất Thế giới chính thức ra mắt thị trường vào năm 1960. Strongbow có nguồn gốc từ Châu  u mà cụ thể là nước Anh.<br>\nCác sản phẩm nước trái cây lên men với nhiều hương vị thơm ngon, hấp dẫn.<br>\nThành phần dinh dưỡng trong strongbow táo lon 330ml<br>\nThành phần dinh dưỡng của Strongbow chứa nhiều vitamin C, chất chống oxy hóa, hệ men lợi cho đường ruột và nhiều khoáng chất khác.<br>\nTrong 100ml strongbow táo có khoảng 56 Kcal.<br>\nThương hiệu: Strongbow (Việt Nam)<br>\nSản xuất tại: Việt Nam<br>\nLoại sản phẩm: Nước uống có cồn<br>\nNồng độ cồn: 4.5%<br>\nThể tích: 330ml<br>\nHương vị: dâu đen<br>\nĐóng gói: thùng<br>\nLưu ý: Sản phẩm dành cho người trên 18 tuổi và không dành cho phụ nữ mang thai. Thưởng thức có trách nhiệm, đã uống đồ uống có cồn thì không lái xe!<br>\n'),
 (68, 'Trà atiso thảo mộc Coop Select 500g', 7, 11, 3000, 375000, 'Gói', 337500, 'images/sp/68.png', 'images/sp/68-big.png', 'Thông tin sản phẩm<br>\nNguyên liệu bông atiso và 9 loại thảo mộc tự nhiên: nấm linh chi, đinh lăng, bông cúc, cam thảo, nhân trần, cỏ ngọt, khổ qua, râu mèo và thảo quyết minh được lựa chọn kĩ càng; giúp thanh nhiệt cho cơ thể và tạo nên hương vị thơm ngon.<br>\nTrà atiso thảo mộc không sử dụng chất bảo quản và phụ gia tạo ngọt. Các loại thảo mộc trong sản phẩm giúp an thần, tăng cường sức khỏe và hệ miễn dịch<br>\nHDSD: lấy 1 lượng khoảng 20g (gồm trà và 1 muỗng thảo quyết minh) pha với 1 2 lít nước sôi, để từ 15 30 phút cho bớt nóng và thưởng thức<br>\nSản phẩm được sản xuất tại công ty C.V.C, nhà máy đạt tiêu chuẩn VSATTP<br>.\nThời hạn sử dụng: 12 tháng.<br>\n'),
 (69, 'Mật ong rừng sữa chúa Zemlya 360g', 7, 49, 3000, 74500, 'Chai', 67050, 'images/sp/69.png', 'images/sp/69-big.png', NULL),
 (70, 'Nước giải khát Coca không đường 24x600ml', 7, 10, 3000, 201500, 'Thùng', 181350, 'images/sp/70.png', 'images/sp/70-big.png', NULL),
@@ -469,8 +474,7 @@ INSERT INTO `trangthai` (`trangthaiid`, `tentrangthai`) VALUES
 (1, 'Đang chuẩn bị hàng'),
 (2, 'Đang giao'),
 (3, 'Giao hàng thành công'),
-(4, 'Giao hàng không thành công'),
-(5, 'Đã hủy');
+(4, 'Giao hàng không thành công');
 
 -- --------------------------------------------------------
 
@@ -601,7 +605,7 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `donhangid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `donhangid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `giohang`

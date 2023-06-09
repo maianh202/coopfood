@@ -8,21 +8,25 @@ if(isset($_POST['mua'])){
 	$phone=$_POST['phone'];
 	$address = $_POST['address'];
 	$tien = $_SESSION['thanhtoan'];
+	$thanhpho=$_POST['thanhpho'];
+	$quan=$_POST['quan'];
+	$phuong=$_POST['phuong'];
 
-	$query = mysqli_query($conn,"INSERT INTO `donhang` (`donhangid`, `khachhangid`,  `ngaydat`, `ngaynhan`, `tongtien`, `ghichu`, `trangthaiid`, `sdt`, `thanhpho`, `quan`, `phuong`, `chitietdiachi`) VALUES (NULL, '".$khachhang_id."', current_timestamp(), NULL, '".$tien."', '".$note."', '1', '".$phone."', NULL , NULL, NULL, '".$address."');"); //lần lượt insert vào bảng đơn hàng
+	$query = mysqli_query($conn,"INSERT INTO `donhang` (`donhangid`, `khachhangid`,  `ngaydat`, `ngaynhan`, `tongtien`, `ghichu`, `trangthaiid`, `sdt`, `thanhpho`, `quan`, `phuong`, `chitietdiachi`) VALUES (NULL, '".$khachhang_id."', current_timestamp(), NULL, '".$tien."', '".$note."', '1', '".$phone."', '".$thanhpho."' ,'".$quan."','".$phuong."', '".$address."');"); //lần lượt insert vào bảng đơn hàng
 	if($query){
 		$magd = mysqli_insert_id($conn); // mã giao dịch là mã đơn hàng
 		foreach ($cart  as $value){
-		mysqli_query($conn, "INSERT INTO `chitietdonhang` (`donhangid`, `sanphamid`, `gia`, `soluong`, `thanhtien`) VALUES ('$magd', '$value[id]', '$value[gia]', '$value[slg]','$value[gia]'* '$value[slg]'); ");
-	}
+			mysqli_query($conn, "INSERT INTO `chitietdonhang` (`donhangid`, `sanphamid`, `gia`, `soluong`, `thanhtien`) VALUES ('$magd', '$value[id]', '$value[gia]', '$value[slg]','$value[gia]'* '$value[slg]'); ");
+			mysqli_query($conn, "UPDATE `sanpham` SET `soluong` = `soluong`-'$value[slg]' WHERE `sanpham`.`sanphamid` = '$value[id]'; ");
+		}
 	unset($_SESSION['cart']);
-	echo "<script type='text/javascript'>  window.location='index.php'; </script>";
+	echo "<script type='text/javascript'>  window.location='index.php'; alert('Đặt hàng thành công. Vui lòng kiểm tra email');</script>";
 	//echo "<script> alert('Đặt hàng thành công. Vui lòng kiểm tra email') </script>";
 	}
 	require('./mail/sendMail.php');
 	$tieude = "Bạn đã đặt hàng thành công!!!";
-	$noidung = "<h2>Cảm ơn quý khách đã đặt hàng.</h2> <p> Quý khách chọn thanh toán bằng ATM vui lòng chuyển khoản qua số tài khoản sau: 686868686868 - MBbank - Sun Phone</p>
-	<p>Kiểm tra thông tin đơn hàng trên website Sun Phone</p>
+	$noidung = "<h2>Cảm ơn quý khách đã đặt hàng.</h2> <p> Quý khách chọn thanh toán bằng ATM vui lòng chuyển khoản qua số tài khoản sau: 686868686868 - MBbank - CoopFood</p>
+	<p>Kiểm tra thông tin đơn hàng trên website CoopFoode/p>
 
 	<p>Chúc bạn một ngày vui vẻ</p>";
 
@@ -68,7 +72,16 @@ if(isset($_POST['mua'])){
 										<label style=" font-family: roboto">Email *</label>
 	        							<input type="email" class="form-control" name="email" value="<?php echo $_SESSION['email']?>">
 
-	            						<label style=" font-family: roboto">Địa chỉ *</label>
+										<label style=" font-family: roboto">Thành phố</label>
+	            						<input style=" font-family: roboto" type="text" class="form-control" name="thanhpho" placeholder="Thành phố.... " required>
+
+										<label style=" font-family: roboto">Quận/Huyện</label>
+	            						<input style=" font-family: roboto" type="text" class="form-control" name="quan" placeholder="Quận.... " required>
+										
+										<label style=" font-family: roboto">Phường/Xã</label>
+	            						<input style=" font-family: roboto" type="text" class="form-control" name="phuong" placeholder="Phường.... " required>
+
+	            						<label style=" font-family: roboto">Địa chỉ cụ thể *</label>
 	            						<input style=" font-family: roboto" type="text" class="form-control" name="address" placeholder="Số nhà, xóm, phường.... " required>
 
 	                					<label style=" font-family: roboto">Số điện thoại *</label>

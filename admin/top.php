@@ -19,7 +19,7 @@
   $row = mysqli_fetch_array($dulieu);
   ?>    
             
-          <div class="logo"><a href="index.php" class="site_title"> <img style="width: 90%; height: auto;" src="images/sunphone.png"></a></div>
+          <div class="logo"><a href="index.php" class="site_title"> <img style="width: 60%; height: auto;" src="images/coopfood.png"></a></div>
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->

@@ -74,7 +74,7 @@
 								<li><a style="font-family:roboto; font-size:15px" href="#">Phương thức thanh toán</a></li>
 								<li><a style="font-family:roboto; font-size:15px" href="#">Khám phá ưu đãi</a></li>
 								<li><a style="font-family:roboto; font-size:15px" href="baohanh.php">Chính sách bảo hành</a></li>
-								<li><a style="font-family:roboto; font-size:15px" href="contact.php">Liên hệ</a></li>
+								<li><a style="font-family:roboto; font-size:15px" href="">Liên hệ</a></li>
 
 															
 	            				</ul><!-- End .widget-list -->

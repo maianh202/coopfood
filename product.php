@@ -137,8 +137,10 @@ WHERE sanphamid = ".$id;
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link" style="text-align: left; font-size: 16px">
-                                        <div class="product-desc-content" >
-                                        <?php echo $row["mota"];?>
+                                        <div class="product-desc-content" > 
+                                        <?php if($row["mota"]==NULL) { echo 'Đang cập nhật';
+                                        }
+                                        else { echo $row["mota"];}?>
                                         </div><!-- End .product-desc-content -->
                                     </div><!-- .End .tab-pane -->
                                     <div style="text-align: left; font-size: 16px; font-color:#666" class="tab-pane fade table" id="product-info-tab" role="tabpanel" aria-labelledby="product-info-link" >

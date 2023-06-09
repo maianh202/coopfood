@@ -54,8 +54,8 @@
                     <div class="container">
                 			<div class="toolbox">
                 				<div class="toolbox-left">
-                					<div class="toolbox-info">
-                						Hiển thị <span style="bold" ></span> Sản phẩm
+                					<div class="toolbox-info"style="font-family:roboto; color: black">
+                						<h3><b>Hiển thị sản phẩm</b></h3>
                 					</div><!-- End .toolbox-info -->
                 				</div><!-- End .toolbox-left -->
                             

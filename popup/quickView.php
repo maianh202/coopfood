@@ -42,29 +42,25 @@
 					
 			<div class="col-lg-5 col-md-6">
             <form action="addtocart.php" method="GET">
-			<span style="font-family:roboto" ><?php echo $row["tensanpham"] ?> </span>
-       <div> <a> Nhà cung cấp: </a>
-        <?php
-                                    
-                                    
-                                            $sql = "SELECT * FROM sanpham a JOIN nhacungcap b ON a.nccid=b.nccid WHERE a.sanphamid=".$id;
+			<span style="font-family:roboto; color: black" ><?php echo $row["tensanpham"] ?> </span>
+            <div style="font-family:roboto; color: black" > <a> Nhà cung cấp: </a>
+            <?php
+                                                          
+            $sql = "SELECT * FROM sanpham a JOIN nhacungcap b ON a.nccid=b.nccid WHERE a.sanphamid=".$id;
                                         
-                                            $dulieu = mysqli_query($ketnoi, $sql);
-                                            while ($rowcc = mysqli_fetch_array($dulieu)) 
-                                            {
-                                            ;?>
-                                            
+            $dulieu = mysqli_query($ketnoi, $sql);
+            while ($rowcc = mysqli_fetch_array($dulieu)) 
+            {
+            ;?>                        
                                    <a href="index.php" style="font-family:roboto"><?php echo $rowcc['tenncc'];?> </a>
                                      <del class="mx-2 font-weight-light" style="color:#99a2aa; font-size:20px"> </del>
 
                                 <?php };?> 
-                            </div>         
-           
-
-				<h3 style="font-family:roboto" class="product-price"><?php echo number_format($row["giaban"]) ?><sup>đ</sup></h3>
-
-               
-               
+                                <br>
+                               Mô tả :<?php if ($row['mota']<> NULL) {echo $row['mota'];} else {echo 'Đang cập nhật';};?>  <br>
+                                                   Giá: <?php if (number_format($row["giakhuyenmai"])>0) echo number_format($row["giakhuyenmai"]).'₫'; else echo number_format($row["giaban"]).'₫';?> 
+                                                    <del class="mx-2 font-weight-light" style="color:#99a2aa; font-size:small"> <?php if (number_format($row["giakhuyenmai"])>0) echo   number_format($row["giaban"]).'₫'?></del>
+                                                    </div>       
                 <div class="details-filter-row details-row-size">
                     <label for="qty" >Số lượng:</label>
                     <div class="product-details-quantity">
@@ -104,12 +100,8 @@ if($row["soluong"]>0)
 <?php 
 } ;?>
 
-
-
-                                                    <div id="tat">
-                                                    <button class="btn-product btn-cart" disabled="disabled"><span >Thêm vào giỏ hàng</span></button></div>
                                                     <div id="bat">
-                                                    <button style="background:black;" type="submit" href="addtocart.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-cart"><span >Thêm vào giỏ hàng</span></button></div>
+                                                    <button style="background:#017ee9; color: white" type="submit" href="addtocart.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-cart"><span style="color: white">Thêm vào giỏ hàng</span></button></div>
 
                                                 </div><!-- End .details-action-col -->
 

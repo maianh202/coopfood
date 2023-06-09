@@ -378,7 +378,7 @@ if(isset($_POST['dangnhap_home'])) {  //tồn tại khi ấn submit đăng nhậ
                     <div class="header-right" style="margin-right: 20px; width: 500px">
                         <div class="header-search header-search-extended header-search-visible"  style="max-width: 400px">
                             <a href="#" class="search-toggle" role="button" ><i class="icon-search"></i></a>
-                            <form action="#" method="get">
+                            <form action="timkiem.php" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide" style="width: 400px">
                                     <label for="q" class="sr-only">Search</label>
                                     <input type="search" class="form-control" name="q" id="q" placeholder="Bạn muốn tìm..." required>
