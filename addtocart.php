@@ -39,7 +39,8 @@ $item =[
 	'name'=>$product['tensanpham'],
 	'img'=>$product['hinhanh'],
 	'gia'=>($product['giakhuyenmai'] > 0) ? $product['giakhuyenmai'] 	: $product['giaban'],
-	'slg'=> $slg
+	'slg'=> $slg,
+	'kiemtra'=>$product['soluong']
 ];
 if($action == 'add'){
 	if(isset($_SESSION['cart'][$id])){
@@ -52,7 +53,9 @@ if($action == 'add'){
 }	
 // Tăng số lượng
 if ($action == 'increase'){
-	if(isset($_SESSION['cart'][$id])){
+	if(isset($_SESSION['cart'][$id]))
+		if($_SESSION['cart'][$id]['slg']<$product['soluong'])
+	{
 		$_SESSION['cart'][$id]['slg'] +=1;
 	}
 }

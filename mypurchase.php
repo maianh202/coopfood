@@ -116,7 +116,7 @@ require("header.php");
 				
 															$songay= floor($datediff/(60*60*24));
 
-															if($songay<='7' and $row_donhang['trangthaiid']==3 and $row1["donhangid"]<>$row_donhang['donhangid'])
+															if($songay<='7' and $row_donhang['trangthaiid']==3 and $row1["donhangid"]<> $row_donhang['donhangid'])
 															{
     ;?>
     
@@ -124,13 +124,13 @@ require("header.php");
 
 <?php 
 }
- elseif ($songay<='7' and $row_donhang['trangthaiid']<3) {;?>
+ else if ($songay<='7' and $row_donhang['trangthaiid']<3) {;?>
  	<button class="btn btn-primary" style="background-color: #017ee9; border-top-right-radius: 3px; border-bottom-right-radius: 3px;" disabled="disabled"><span>Yêu cầu đổi/trả</span></button>
 
  
 <?php 
 }
-else if ($row1["donhangid"]==$row_donhang['donhangid']) {
+else if ($row1["donhangid"]== $row_donhang['donhangid']) {
 	;?>
  	<button class="btn btn-primary" style="background-color: white; border-top-right-radius: 3px; border-bottom-right-radius: 3px;" disabled="disabled"><span style="color: red;">Đơn hàng đổi/trả</span></button>
 
