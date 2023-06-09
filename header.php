@@ -306,7 +306,7 @@ if(isset($_POST['dangnhap_home'])) {  //tồn tại khi ấn submit đăng nhậ
                         <nav class="main-nav">
                             <ul class="menu" style="padding: 0px; height: 44px">
                                 <li>
-                                    <a href="" class="category-list" style="width: 380px; padding: 10px; margin-right: 20px; background-color: white; border-top-right-radius: 3px; border-top-left-radius: 3px;
+                                    <a href="" class="category-list" style="width: 220px; padding: 10px; margin-right: 20px; background-color: white; border-top-right-radius: 3px; border-top-left-radius: 3px;
                                     font-family: 'Roboto', 'sans-serif'; font-weight: 600; font-size: 14px; color: #005dac">
                                         <div class="listing-icon">
                                             <span></span>
@@ -321,12 +321,12 @@ if(isset($_POST['dangnhap_home'])) {  //tồn tại khi ấn submit đăng nhậ
                                         <li>
                                             <?php 
                                             $sql = "SELECT * FROM danhmuc"  ;
-                            $dulieu = mysqli_query($conn, $sql);
-                        
-                            while ($row = mysqli_fetch_array($dulieu))
-                            {
-                                ;?>
-                                            <a href="./category.php?id=<?php echo $row["danhmucid"];?>"><?php echo $row["tendanhmuc"] ;?></a>
+                                            $dulieu = mysqli_query($conn, $sql);
+                                        
+                                            while ($row = mysqli_fetch_array($dulieu))
+                                            {
+                                                ;?>
+                                            <a style="width: 220px" href="./category.php?id=<?php echo $row["danhmucid"];?>"><?php echo $row["tendanhmuc"] ;?></a>
                                             <?php };?>
                                         </li>
                                     </ul>
