@@ -93,7 +93,7 @@ $khachhang=$_SESSION['khachhangid']
                                                                 <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>                                                
                                                                 <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['tensanpham']; ?></td>                                    
                                                                 <td style=" font-family: roboto; text-align: center;"><input name="soluong<?php echo $i ;?>" class="soluong" type="number" min="1" max="<?php echo $row_donhang['soluong']; ?>"></td>                                    
-                                                                <td style=" font-family: roboto; text-align: center"><input name="anhminhchung<?php echo $i ;?>" type="file" class="form-control"></td>   
+                                                                <td style=" font-family: roboto; text-align: center"><input name="anhminhchung<?php echo $i ;?>" type="file" class="form-control" accept=".jpg, .png"></td>   
                                                                 <td style=" font-family: roboto; text-align: center"><input class="checkbox" type="checkbox" name="checkbox<?php echo $i ;?>"></td>                                  
                                                             </tr>                                                               
                                                             <?php } ;?>
@@ -197,6 +197,15 @@ $khachhang=$_SESSION['khachhangid']
                 return false;
             }
         }
+    </script>
+
+    <script>
+        const input = document.getElementById('thumbnail');
+
+        input.addEventListener('change', (event) => {
+        const image = event.target.files[0];
+
+});
     </script>
 </body>
 </html>
