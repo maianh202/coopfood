@@ -31,12 +31,9 @@
     $id_yeucau = mysqli_fetch_array($result)[0];
 
     for ($i = 1; $i <= $rowcount; $i++){
-        if(isset($_POST['checkbox'.$i])){
-            echo $i;
-            
+        if(isset($_POST['checkbox'.$i])){          
             $row2 = mysqli_fetch_array($query2);
             
-            echo $row2['sanphamid'];
             $sql_insert2 = "INSERT INTO `chitietyeucau`(`yeucauid`, `sanphamid`, `soluongyc`) 
             VALUES ('".$id_yeucau."', '".$row2['sanphamid']."', '".$_POST['soluong'.$i]."')";
             mysqli_query($ketnoi, $sql_insert2);
