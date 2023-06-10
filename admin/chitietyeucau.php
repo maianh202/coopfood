@@ -148,6 +148,7 @@
                                         </tr>
                                         <?php
                                         $i = 0;
+                                        $sql_select2 = mysqli_query($conn,"SELECT *  from chitietyeucau a  join sanpham b on a.sanphamid=b.sanphamid  where a.yeucauid=".$id);
                                         while($row_donhang = mysqli_fetch_array($sql_select)){ 
                                             $i++;
                                         ?> 
@@ -157,7 +158,7 @@
                                             <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang["tensanpham"]; ?></a></td>									
                                             <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang["soluongyc"] ?></td>
                                             <?php 
-                                                $sql_select2 = mysqli_query($conn,"SELECT *  from chitietyeucau a  join sanpham b on a.sanphamid=b.sanphamid  where a.yeucauid=".$id);
+                                                
                                                 $row_donhang2 = mysqli_fetch_assoc($sql_select2); 
 
                                                 $base64Image = base64_encode($row_donhang2['hinhanhyeucau']);
