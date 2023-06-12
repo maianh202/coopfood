@@ -97,8 +97,8 @@
                   
                   <li><a><i class="fa fa-table"></i> Quản trị yêu cầu đổi-trả <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="yeu-cau-doi-tra.php?id=<?php echo $row5["loaiyeucauid"];?>">Yêu cầu đổi hàng(<?php echo $soluong5 ;?>)</a></li>
-                        <li><a href="yeu-cau-doi-tra.php?id=<?php echo $row6["loaiyeucauid"];?>">Yêu cầu trả hàng(<?php echo $soluong6 ;?>)</a></li>
+                        <li><a href="danhsachyc.php?id=<?php echo $row5["loaiyeucauid"];?>">Yêu cầu đổi hàng(<?php echo $soluong5 ;?>)</a></li>
+                        <li><a href="danhsachyc.php?id=<?php echo $row6["loaiyeucauid"];?>">Yêu cầu trả hàng(<?php echo $soluong6 ;?>)</a></li>
                     </ul>
                   </li>
                   
