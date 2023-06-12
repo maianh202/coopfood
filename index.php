@@ -13,42 +13,7 @@ p,tr,h2,a, h4, h3, li {
      
     }
 
-</style>
-<div class="f1-effect">
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-	<div class="f1-effect-flower">
-	</div>
-	
-</div>
 
-<style>
 .f1-effect {
     position: relative;
     z-index: 99999999; }
@@ -328,7 +293,7 @@ p,tr,h2,a, h4, h3, li {
                                 <div class="item">
                                     <a href="./category.php?id=<?php echo $row["danhmucid"];?>">
                                         <img class="img-rounded" src="assets/<?php echo $row["hinhanhdm"]; ?>">
-                                        <p class="text-center"> <?php echo $row["tendanhmuc"] ;?> </p>
+                                        <p class="text-center" style="color: #005dac"> <?php echo $row["tendanhmuc"] ;?> </p>
                                     </a>
                                 </div>
                         <?php } ?>

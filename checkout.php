@@ -46,7 +46,7 @@ if(isset($_POST['mua'])){
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/nen.png')">
         		<div class="container">
-        			<h1 class="page-title">Thanh toán<span>Sun Phone</span></h1>
+        			<h1 class="page-title">Thanh toán<span>COOP FOOD</span></h1>
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav">

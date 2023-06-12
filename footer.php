@@ -26,7 +26,7 @@
 	            	<div class="row">
 	            		<div class="col-sm-6 col-lg-3">
 	            			<div class="widget widget-about">
-	            				<img src="assets/images/sunphonec.png" class="footer-logo" alt="Footer Logo" width="375" height="200">
+	            				<img src="assets/images/coopfood.png" class="footer-logo" alt="Footer Logo" width="375" height="200">
                                 <p style="font-family:roboto; font-size:16px">Đem kết nối đến tương lai, bạn cứ việc tỏa sáng chúng tôi sẽ đưa bạn đi </p>
 
 

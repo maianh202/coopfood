@@ -12,15 +12,15 @@
      $mail->CharSet  = "utf-8";     
      $mail->Host = 'smtp.gmail.com';  //SMTP servers
      $mail->SMTPAuth = true; // Enable authentication
-     $mail->Username = 'danghanh16112002@gmail.com'; // SMTP username
+     $mail->Username = 'anh992002@gmail.com'; // SMTP username
      $mail->Password = 'bqwnwmyjryjedvfg';   // SMTP password
      $mail->SMTPSecure = 'ssl';  // mã hoá theo kiểu encryption TLS/SSL
      $mail->Port = 465;  // cổng port to connect to                
      
-     $mail->setFrom('danghanh16112002@gmail.com', 'Sun Phone' ); 
+     $mail->setFrom('anh992002@gmail.com', 'COOP FOOD' ); 
      $mail->addAddress($maildathang, 'nttdung'); //mail và tên người nhận  
     //  $mail->addAddress('23a4040022@bav.edu.vn', 'dungba');
-     $mail->addCC('danghanh16112002@gmail.com');
+     $mail->addCC('anh992002@gmail.com');
      $mail->isHTML(true);  // Set email format to HTML
      $mail->Subject = $tieude;
      $mail->Body = $noidung;
@@ -49,15 +49,15 @@ class mailer2{
      $mail->CharSet  = "utf-8";     
      $mail->Host = 'smtp.gmail.com';  //SMTP servers
      $mail->SMTPAuth = true; // Enable authentication
-     $mail->Username = 'danghanh16112002@gmail.com'; // SMTP username
+     $mail->Username = 'anh992002@gmail.com'; // SMTP username
      $mail->Password = 'bqwnwmyjryjedvfg';   // SMTP password
      $mail->SMTPSecure = 'ssl';  // mã hoá theo kiểu encryption TLS/SSL
      $mail->Port = 465;  // cổng port to connect to                
      
-     $mail->setFrom('danghanh16112002@gmail.com', 'Sun Phone' ); 
+     $mail->setFrom('anh992002@gmail.com', 'Coop Food' ); 
      $mail->addAddress($maildathang, 'nttdung'); //mail và tên người nhận  
     //  $mail->addAddress('23a4040022@bav.edu.vn', 'dungba');
-     $mail->addCC('danghanh16112002@gmail.com');
+     $mail->addCC('anh992002@gmail.com');
      $mail->isHTML(true);  // Set email format to HTML
      $mail->Subject = $tieude;
      $mail->Body = $noidung;

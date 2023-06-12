@@ -51,14 +51,14 @@ $row = mysqli_fetch_array($dulieu);
                             
                 			</div><!-- End .toolbox -->  
                             <div class="shop__product__option">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
   
                 
-                                <div id="1" class="row product__filter">
+                            <div id="1" class="row product__filter">
                             <?php                                     
                             $sql = "SELECT * FROM sanpham a join danhmuc b on a.danhmucid=b.danhmucid
                             WHERE a.danhmucid = '".$id."' and a.soluong>0"  ;
@@ -67,46 +67,42 @@ $row = mysqli_fetch_array($dulieu);
                             while ($row = mysqli_fetch_array($dulieu)) 
                             {
                             ;?>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix best-sellers ">
-             <div class="product product-2">
-             <figure class="product-media">
-                <a href="product.php?id=<?php echo $row["sanphamid"];?>">
-                 <img src="assets/<?php echo $row["hinhanh"];?>" >                                           
-                    </a>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix best-sellers ">
+                                    <div class="product product-2">
+                                        <figure class="product-media">
+                                            <a href="product.php?id=<?php echo $row["sanphamid"];?>">
+                                                <img src="assets/<?php echo $row["hinhanh"];?>" >                                           
+                                            </a>
 
-                    <div class="product-action-vertical">
-                        <a style="font-family:roboto" href="addtowishlist.php?id=<?php echo $row['sanphamid']?>" class="btn-product-icon btn-wishlist btn-expandable"><span>Thêm mục yêu thích</span></a>
-                    </div><!-- End .product-action -->
-        
-
-                    <div class="product-action product-action-dark">
-
-                        
-                                                    
-                      <a style="font-family:roboto"  href="addtocart.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-cart" title="Add to cart"><span>Thêm vào giỏ</span></a>
-                        <a style="font-family:roboto" href="popup/quickView.php?id=<?php echo $row["sanphamid"];?> && danhmucid=<?php echo $row["danhmucid"];?>" class="btn-product btn-quickview" title="Quick view"><span>Xem nhanh</span></a>
-                  </div>  <!-- End .product-action -->
-                </figure><!-- End .product-media -->
-
-                <div class="product-body">
-                                    <div class="product-cat" style="font-family:roboto" >
-                                        <a style="font-family:roboto" href="#"><?php echo $row["tendanhmuc"];?></a>
-                                    </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a style="font-family:roboto"  href="product.php?id=<?php echo $row["sanphamid"];?>"><?php echo $row["tensanpham"];?></a></h3><!-- End .product-title -->
-                                    <br>
+                                            <div class="product-action-vertical">
+                                                <a style="font-family:roboto" href="addtowishlist.php?id=<?php echo $row['sanphamid']?>" class="btn-product-icon btn-wishlist btn-expandable"><span>Thêm mục yêu thích</span></a>
+                                            </div><!-- End .product-action -->
                                     
-                                    <div style="font-family:roboto" class="product-price">
-                                    <?php if (number_format($row["giakhuyenmai"])>0) echo number_format($row["giakhuyenmai"]).'₫'; else echo number_format($row["giaban"]).'₫';?> 
-                                                <del style="color:gray" class="mx-2 font-weight-light"> <?php if (number_format($row["giakhuyenmai"])>0) echo   number_format($row["giaban"]).'₫'?></del>
-                                    </div><!-- End .product-price -->
-                                    
-                                </div><!-- End .product-body -->
-                </div>
-                </div>
-                <?php 
-            }; ?>
+                                            <div class="product-action product-action-dark">                         
+                                                <a style="font-family:roboto"  href="addtocart.php?id=<?php echo $row['sanphamid']?>" class="btn-product btn-cart" title="Add to cart"><span>Thêm vào giỏ</span></a>
+                                                <a style="font-family:roboto" href="popup/quickView.php?id=<?php echo $row["sanphamid"];?> && danhmucid=<?php echo $row["danhmucid"];?>" class="btn-product btn-quickview" title="Quick view"><span>Xem nhanh</span></a>
+                                            </div>  <!-- End .product-action -->
+                                        </figure><!-- End .product-media -->
 
-                        </div>
+                                        <div class="product-body">
+                                            <div class="product-cat" style="font-family:roboto" >
+                                                <a style="font-family:roboto" href="#"><?php echo $row["tendanhmuc"];?></a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a style="font-family:roboto"  href="product.php?id=<?php echo $row["sanphamid"];?>"><?php echo $row["tensanpham"];?></a></h3><!-- End .product-title -->
+                                            <br>
+                                            
+                                            <div style="font-family:roboto" class="product-price">
+                                            <?php if (number_format($row["giakhuyenmai"])>0) echo number_format($row["giakhuyenmai"]).'₫'; else echo number_format($row["giaban"]).'₫';?> 
+                                                        <del style="color:gray" class="mx-2 font-weight-light"> <?php if (number_format($row["giakhuyenmai"])>0) echo   number_format($row["giaban"]).'₫'?></del>
+                                            </div><!-- End .product-price -->
+                                    
+                                        </div><!-- End .product-body -->
+                                    </div>
+                                </div>
+                                    <?php 
+                                }; ?>
+
+                            </div>
 
                     </div><!-- End .col-xl-4-5col -->
                 </div><!-- End .row -->

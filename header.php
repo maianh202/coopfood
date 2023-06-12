@@ -87,13 +87,13 @@ if(isset($_POST['dangnhap_home'])) {  //tồn tại khi ấn submit đăng nhậ
     <meta name="description" content="Sun Phone">    
     <meta name="author" content="p-themes">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/haha.png">
-    <link rel="icon" type="image/png" sizes="40x20" href="assets/images/haha.png">  
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/haha.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/coopfood-icon.png">
+    <link rel="icon" type="image/png" sizes="40x20" href="assets/images/coopfood-icon.png">  
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/coopfood-cion.png">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo1.png">
-    <link rel="icon" type="image/png" sizes="40x20" href="assets/images/logo1.png">  
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/coopfood.png">
+    <link rel="icon" type="image/png" sizes="40x20" href="assets/images/coopfood.png">  
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/coopfood.png">
 
     <link rel="stylesheet" href="assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css">
     <!-- Plugins CSS File -->
@@ -296,7 +296,7 @@ if(isset($_POST['dangnhap_home'])) {  //tồn tại khi ấn submit đăng nhậ
                 </div><!-- End .modal -->
 
             <div class="header-middle sticky-header sticky-nav" style="padding: 0px; height: auto">
-                <div class="container-fluid" style="padding: 0px;  height: 70px">
+                <div class="container-fluid" style="padding: 0px;  height: 70px; background-color: #005dac">
                     <div class="header-left" >
                         <button class="mobile-menu-toggler" style="padding: 0px">
                             <span class="sr-only">Toggle mobile menu</span>
