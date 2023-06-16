@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png"/>
 
-    <title>Coop Food| Trang quản trị yêu cầu đổi trả</title>
+    <title> Trang sửa trạng thái đơn hàng</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,6 +29,8 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+  <script src="../js/tinymce/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>   
   </head>
 
   <body class="nav-md" style="background-color:#212529;">
@@ -36,83 +38,83 @@
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
-            <?php include("top.php");?>
+         
+                  <?php 
+                  include("top.php");
+                  include("../config/dbconfig.php");
+                  $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
 
+                  // Bước 2: Lấy dữ liệu từ trên đường đẫn
+                  $id = $_GET["id"];
+                  $sql = "
+                    SELECT * 
+                    FROM yeucaudoitra
+                    WHERE yeucauid = ".$id;  
+                  $dulieu = mysqli_query($ketnoi, $sql);
+                  $row = mysqli_fetch_array($dulieu);
+                  ;?> 
             <!-- page content -->
             <div class="right_col" role="main">
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                  <h1>QUẢN TRỊ YÊU CẦU ĐỔI - TRẢ</h1>
-                  <div>
-                   <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          
-                          <th style="text-align: center;">Mã yêu cầu</th>
-                          <th style="text-align: center;">Loại yêu cầu</th>
-                          <th style="text-align: center;">Mã đơn hàng</th>
-                          <th style="text-align: center;">Khách hàng</th>
-                          <th style="text-align: center;">Nhân viên xử lý</th>
-                          <th style="text-align: center;">Lý do</th> 
-                          <th style="text-align: center;">Ngày yêu cầu</th>
-                          <th style="text-align: center;">Ngày hoàn thành</th>
-                          <th style="text-align: center;">Trạng thái</th>
-                          <th style="text-align: center;">Chi tiết</th>
-                          <th style="text-align: center;">Sửa</th>
+                  <h1>SỬA YÊU CẦU ĐỔI TRẢ</h1>
+                  <form method="post" action="suayeucauthuchien.php" enctype="multipart/form-data">
+              
+                  <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã yêu cầu: <span class="required">*</span></label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                      <input name="txtdhid" type="text" class="form-control" value="<?php echo $row["yeucauid"];?>" readonly>
 
-
-
-                        </tr>
-                      </thead>
-                      <tbody>
-                      <?php
-                      // Bước 1: Kết nối đến CSDL
-                      include("../config/dbconfig.php");
-                      $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-                   //   $id=$_GET['id'];
-
-                      //Bước 2: Hiển thị các dữ liệu trong bảng tbl ra đây
-                      $sql = "
-                        SELECT * FROM yeucaudoitra a join khachhang b on a.khachhangid =b.khachhangid  join tinhtrang d on a.tinhtrangid= d.tinhtrangid
-                         left outer join nhanvien e on a.nhanvienid=e.nhanvienid join loaiyeucau f on a.loaiyeucauid=f.loaiyeucauid
-                        ORDER BY a.ngayyeucau ,a.tinhtrangid ,a.ngayhoanthanh asc ";
-
-                      $dulieu = mysqli_query($ketnoi, $sql);
-                      $i = 0;
-                      while ($row = mysqli_fetch_array($dulieu)) {
-                     
-                      ;?>
-                        <tr>
-                          <td style="text-align: center;"><?php echo $row["yeucauid"];?></td>
-                           <td style="text-align: center;"><?php echo $row["tenyeucau"];?></td>
-                           <td style="text-align: center;"><?php echo $row["donhangid"];?></td>
-                           <td style="text-align: center;"><?php echo $row["tenkhach"];?></td>
-                           <td style="text-align: center;"><?php if($row["nhanvienid"]==null ) {echo 'Đang cập nhật';} else { echo $row["tennhanvien"];}?></td>
-                           <td style="text-align: center;"><?php echo $row["lydo"];?></td>
-                           <td style="text-align: center;"><?php echo $row["ngayyeucau"];?></td>
-                           <td style="text-align: center;"><?php if($row["tinhtrangid"]=='4' || $row["tinhtrangid"]=='5'|| $row["tinhtrangid"]=='6') { echo $row["ngayhoanthanh"];} else {echo 'Đang cập nhật';}  ?></td>      
-                          <td style="text-align: center;"><?php echo $row["tentinhtrang"];?></td>
-                           <td style="text-align: center;"><a href="chitietyeucau.php?id=<?php echo $row['yeucauid']?>" target="_blank">Chi tiết</a></td>
-                           <td><a href="suayeucau.php?id=<?php echo $row['yeucauid'];?> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>       
-
-                        </tr>
-                      <?php
-                      }
-                      ;?>
-                      </tbody>
-                    </table>
-
-
+                    </div>
                   </div>
+
+                  <div class="form-group row">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại yêu cầu<span class="required">*</span></label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                      <select name="txtDmtt">
+                        <?php
+                        // Bước 1: Kết nối đến CSDL
+                        include("../config/dbconfig.php");
+                        $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
+                        mysqli_set_charset($ketnoi, 'UTF8');
+                        $id = $_GET["id"];
+                          $sql = "
+                          SELECT * 
+                          FROM loaiyeucau";
+                         
+                             $dulieu = mysqli_query($ketnoi, $sql);
+                        while ($row1 = mysqli_fetch_array($dulieu)) {
+                            if($row["loaiyeucauid"]==$row1["loaiyeucauid"]) {
+                        ;?>
+                            <option value="<?php echo $row1["loaiyeucauid"];?>" selected><?php echo $row1["tenyeucau"];?></option>
+                        <?php
+                            } else {
+                        ;?>
+                            <option value="<?php echo $row1["loaiyeucauid"];?>"><?php echo $row1["tenyeucau"];?></option>
+                        <?php
+                            }
+                        }
+                        ;?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="float: right;">
+                    <input type="hidden" name="txtID" value='<?php echo $row["yeucauid"];?>'>
+                    <button type="submit">Sửa</button>
+                  </div>
+                  <br>
+
                 </div>
+                </form>
               </div>
             </div>
             <!-- /page content -->
-
             <?php include("bottom.php");?>
+          </div>
+        </div>
       </div>
     </div>
-
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->

@@ -68,7 +68,6 @@
                       include("../config/dbconfig.php");
                       $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
                    $id=$_GET['id'];
-
                       //Bước 2: Hiển thị các dữ liệu trong bảng tbl ra đây
                       $sql = "
                         SELECT * FROM yeucaudoitra a join khachhang b on a.khachhangid =b.khachhangid  join tinhtrang d on a.tinhtrangid= d.tinhtrangid
@@ -88,7 +87,7 @@
                            <td style="text-align: center;"><?php if($row["nhanvienid"]==null ) {echo 'Đang cập nhật';} else { echo $row["tennhanvien"];}?></td>
                            <td style="text-align: center;"><?php echo $row["lydo"];?></td>
                            <td style="text-align: center;"><?php echo $row["ngayyeucau"];?></td>
-                           <td style="text-align: center;"><?php if($row["tinhtrangid"]=='4' || $row["tinhtrangid"]=='5') { echo $row["ngayhoanthanh"];} else {echo 'Đang cập nhật';}  ?></td>      
+                           <td style="text-align: center;"><?php if($row["tinhtrangid"]=='4' || $row["tinhtrangid"]=='5'|| $row["tinhtrangid"]=='6') { echo $row["ngayhoanthanh"];} else {echo 'Đang cập nhật';}  ?></td>      
                           <td style="text-align: center;"><?php echo $row["tentinhtrang"];?></td>
                            <td style="text-align: center;"><a href="chitietyeucau.php?id=<?php echo $row['yeucauid']?>" target="_blank">Chi tiết</a></td>
                         </tr>

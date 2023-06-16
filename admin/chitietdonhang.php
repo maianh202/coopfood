@@ -175,7 +175,7 @@ while($row_donhang = mysqli_fetch_array($sql_select)){
 <tr>
     <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
     <td style=" font-family: roboto; text-align: center"><?php echo "$id"?></td>
-    <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang['tensanpham']; ?></a></td>									
+    <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>"target="_blank" style="font-family: roboto"><?php echo $row_donhang['tensanpham']; ?></a></td>									
     <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['soluong'] ?></td>
     <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['gia'] ?></td>											
 </tr>
@@ -281,7 +281,7 @@ while($row_donhang = mysqli_fetch_array($sql_select)){
 <tr>
     <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
     <td style=" font-family: roboto; text-align: center"><?php echo "$id"?></td>
-    <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang['tensanpham']; ?></a></td>									
+    <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" target="_blank" style="font-family: roboto"><?php echo $row_donhang['tensanpham']; ?></a></td>									
     <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['soluong'] ?></td>
     <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang['gia'] ?></td>											
 </tr>

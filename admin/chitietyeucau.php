@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <h1>QUẢN TRỊ YÊU CẦU ĐỔI - TRẢ</h1>
-
+                            
                             <div>
                                 <?php
 
@@ -62,8 +62,13 @@
                                 $order = mysqli_query($conn, "SELECT * from yeucaudoitra a join chitietyeucau b on a.yeucauid=b.yeucauid join tinhtrang c on a.tinhtrangid=c.tinhtrangid 
                                 join khachhang d on a.khachhangid=d.khachhangid join  loaiyeucau f on a.loaiyeucauid = f.loaiyeucauid join donhang e on a.donhangid=e.donhangid WHERE a.yeucauid = ".$id);
                                 $order = mysqli_fetch_all($order, MYSQLI_ASSOC);
-                                $sql_select = mysqli_query($conn,"SELECT *  from chitietyeucau a  join sanpham b on a.sanphamid=b.sanphamid  where a.yeucauid=".$id);
-                                    ?>
+                                $sql_select = mysqli_query($conn,"SELECT *  from chitietyeucau a  join sanpham b on a.sanphamid=b.sanphamid  where a.yeucauid=".$id); 
+
+                                $sql3 = "
+                                SELECT * 
+                                FROM yeucaudoitra  a join nhanvien b on a.nhanvienid=b.nhanvienid WHERE a.yeucauid = ".$id ;
+                                $dulieu3 = mysqli_query($ketnoi, $sql3);
+                                $row3 = mysqli_fetch_array($dulieu3);?>
 
                                 <div class="row">
                                     <?php
@@ -94,31 +99,9 @@
                                         </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Yêu cầu: <span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <select name="txtloaiyeucau">
-                                                <?php
-                                                // Bước 1: Kết nối đến CSDL
-                                                include("../config/dbconfig.php");
-                                                $ketnoi = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-                                                 mysqli_set_charset($ketnoi, 'UTF8');
-                                                $sql = "SELECT * FROM loaiyeucau ";
-                                                $dulieu = mysqli_query($ketnoi, $sql);
-                                                while ($row1 = mysqli_fetch_array($dulieu)) {
-                                                if($order[0]["loaiyeucauid"]==$row1["loaiyeucauid"] ) {
-                                                ;?>
-                                                <option value="<?php echo $row1["loaiyeucauid"];?>" selected><?php echo $row1["tenyeucau"];?></option>
-                                                <?php
-                                                } else {
-                                                ;?>
-                                                <option value="<?php echo $row1["loaiyeucauid"];?>"><?php echo $row1["tenyeucau"];?></option>
-                                                <?php
-                                                }
-                                                }
-                                                ;?>
-                                            </select>
-                                        </div>
+
+                                        <div>
+                                        <label><strong>Yêu cầu:</strong> <span> <?= $order[0]['tenyeucau'] ?></span> </label>
                                         </div>
                                         <div>
                                         <label><strong>Trạng thái:</strong> <span> <?= $order[0]['tentinhtrang'] ?></span> </label>
@@ -176,98 +159,108 @@
                                         <button type="submit"   value="" name="tuchoi">Từ chối</button>
 
                                     </form> 
-                                    
 
                                             <?php }
-                                            else   {
-                                                    $sql3 = "
-                                                    SELECT * 
-                                                    FROM yeucaudoitra  a join nhanvien b on a.nhanvienid=b.nhanvienid WHERE a.yeucauid = ".$id ;
-                                                    $dulieu3 = mysqli_query($ketnoi, $sql3);
-                                                    $row3 = mysqli_fetch_array($dulieu3);
-                                                    ?>
 
+                                            else  { ?>
+ 
+ 
+                                    <form method="post" action="capnhatyeucau.php?id=<?php echo $id;?>" enctype="multipart/form-data">
 
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>
-
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"><strong>Loại yêu cầu: </strong> <span> <?php echo $order[0]["tenyeucau"] ?></span> </label>
-
-                                    </div>
-
-                                    <div>
-                                        <label><strong>Trạng thái:</strong> <span> <?= $order[0]['tentinhtrang'] ?></span> </label>
-                                    </div>
-
-                                    <div>
-                                        <label><strong>Khách hàng: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
-                                    </div>
-
-                                    <div>
-                                        <label><strong>Thời gian yêu cầu: </strong><span> <?= $order[0]['ngayyeucau'] ?></span></label>
-                                    </div>
-
-                                    <div>
-                                      <?php
-                                      if(   $order[0]['tinhtrangid']== 2|| $order[0]['tinhtrangid']== 3) {
-                                      ?>
-                                     <label><strong>Thời gian hoàn thành: </strong><span> <?php echo 'Đang cập nhật' ?></span></label>
                                     
-                                        <?php 
-                                        } 
-                                        else {?>
-                                            <label><strong>Thời gian hoàn thành: </strong><span> <?= $order[0]['ngayhoanthanh'] ?></span></label>
-                                        <?php } ?>
-                                    </div>
-                                        
-                                    <div>
-                                        <label><strong>Điện thoại: </strong><span> <?= $order[0]['sdt'] ?></span></label>
-                                    </div>
-                                        
-                                    <div>
-                                        <label><strong>Địa chỉ: </strong><span> <?= $order[0]['chitietdiachi'] ?></span></label>
-                                    </div>
-                                        
-                                    <table class="table table-bordered ">
-                                    <tr>
-                                        <th style="color:black; font-family: roboto; text-align: center">Thứ tự</th>
-                                        <th style="color:black; font-family: roboto; text-align: center">Mã sản phẩm</th>													
-                                        <th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
-                                        <th style="color:black; font-family: roboto; text-align: center">Số lượng yêu cầu</th>
-                                        <th style="color:black; font-family: roboto; text-align: center">Hình ảnh đính kèm</th>
-                                    </tr>
-                                    <?php
-                                    $i = 0;
-                                    while($row_donhang = mysqli_fetch_array($sql_select)){ 
-                                        $i++;
-                                    ?> 
-                                    <tr>
-                                        <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
-                                        <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang["sanphamid"]?></td>
-                                        <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang["tensanpham"]; ?></a></td>									
-                                        <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang["soluongyc"] ?></td>
-                                        <td><img style="height: 100px; width: auto;" src="<?php echo $row_donhang["hinhanhyeucau"];?>"></td>								
-                                    </tr>
-                                        <?php
-                                        } 
-                                        ?> 
-                                        </table>
+                                    
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"><strong>Nhân viên xử lý: </strong> <span> <?php echo $row3["tennhanvien"] ?></span> </label>       
+                                        </div> 
+                                     
+ 
+                                            <div class="form-group row">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"><strong>Loại yêu cầu: </strong> <span> <?php echo $order[0]["tenyeucau"] ?></span> </label>
 
-                                        <?php if( $order[0]['tinhtrangid'] ==2) { ?>
-                                        <form method="post" action="capnhatyeucau.php?id=<?php echo $id;?>" enctype="multipart/form-data">
-                                                <button type="submit" value="" name ="xuly">Đang xử lý</button>
-                                        </form>
-                                            <?php 
-                                            } if(  $order[0]['tinhtrangid'] ==3 )  {  ?>
-                                                <form method="post" action="capnhatyeucau.php?id=<?php echo $id;?>" enctype="multipart/form-data">
-                                                    <button type="submit"   value="" name="thanhcong">Thành công</button>
-                                                </form>
-                                            <?php } 
-                                                    }
-                                                      ?>
+                                            </div>
+                                            
+                                            <div>
+                                                <label><strong>Trạng thái:</strong> <span> <?= $order[0]['tentinhtrang'] ?></span> </label>
+                                            </div>
+
+                                            <div>
+                                                <label><strong>Khách hàng: </strong> <span> <?= $order[0]['tenkhach'] ?></span> </label>
+                                            </div>
+
+                                            <div>
+                                                <label><strong>Thời gian yêu cầu: </strong><span> <?= $order[0]['ngayyeucau'] ?></span></label>
+                                            </div>
+
+                                            <div>
+                                              <?php
+                                              if(  $order[0]['tinhtrangid']== 2 || $order[0]['tinhtrangid']== 3) {
+                                              ?>
+                                             <label><strong>Thời gian hoàn thành: </strong><span> <?php echo 'Đang cập nhật' ?></span></label>
+                                            
+                                                <?php 
+                                                } 
+                                                else {?>
+                                                    <label><strong>Thời gian hoàn thành: </strong><span> <?= $order[0]['ngayhoanthanh'] ?></span></label>
+                                                <?php } ?>
+                                            </div>
+                                                
+                                            <div>
+                                                <label><strong>Điện thoại: </strong><span> <?= $order[0]['sdt'] ?></span></label>
+                                            </div>
+                                                
+                                            <div>
+                                                <label><strong>Địa chỉ: </strong><span> <?= $order[0]['chitietdiachi'] ?></span></label>
+                                            </div>
+                                                
+                                            <table class="table table-bordered ">
+                                            <tr>
+                                                <th style="color:black; font-family: roboto; text-align: center">Thứ tự</th>
+                                                <th style="color:black; font-family: roboto; text-align: center">Mã sản phẩm</th>													
+                                                <th style="color:black; font-family: roboto; text-align: center">Tên sản phẩm</th>
+                                                <th style="color:black; font-family: roboto; text-align: center">Số lượng yêu cầu</th>
+                                                <th style="color:black; font-family: roboto; text-align: center">Hình ảnh đính kèm</th>
+                                            </tr>
+                                            <?php
+                                            $i = 0;
+                                            $sql_select2 = mysqli_query($conn,"SELECT *  from chitietyeucau a  join sanpham b on a.sanphamid=b.sanphamid  where a.yeucauid=".$id);
+
+                                            while($row_donhang = mysqli_fetch_array($sql_select)){ 
+                                                $i++;
+                                            ?> 
+                                            <tr>
+                                                <td style=" font-family: roboto; text-align: center"><?php echo $i; ?></td>
+                                                <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang["sanphamid"]?></td>
+                                                <td style=" font-family: roboto; text-align: center"><a href="product.php?id=<?php echo $row_donhang["sanphamid"];?>" style="font-family: roboto"><?php echo $row_donhang["tensanpham"]; ?></a></td>									
+                                                <td style=" font-family: roboto; text-align: center"><?php echo $row_donhang["soluongyc"] ?></td>
+                                                <?php 
+
+                                                    $row_donhang2 = mysqli_fetch_assoc($sql_select2); 
+
+                                                    $base64Image = base64_encode($row_donhang2['hinhanhyeucau']);
+                                                    $imgSrc = 'data:' . $row_donhang2['hinhanhContent'] . ';base64,' . $base64Image ?>
+                                                <td><img src="<?php echo $imgSrc; ?>" alt="" style = "width: 300px;   display: block; margin-left: auto; margin-right: auto;"></td>								
+                                            </tr>
+                                            <?php
+                                            } 
+                                            ?> 
+                                            </table>
+
+                                            <?php if( $order[0]['tinhtrangid'] ==2   ) { ?>
+                                                    <button type="submit" value="" name ="xuly" >Đang xử lý</button> <?php
+                                                    if($order[0]['loaiyeucauid'] =='1'){ ?>
+                                                        <button type="submit"   value="" name="huy" >Hủy yêu cầu</button>
+                                                    <?php
+                                                    } 
+
+
+                                                        } else if(  $order[0]['tinhtrangid'] ==3 )  {  ?>
+                                                        <button type="submit"   value="" name="thanhcong">Thành công</button>
+                                                        
+                                                <?php } ?>
+                                    </form>
+                                        <?php
+                                         }
+                                          ?>
                                 </div>
                             </div>
                         </div>          
