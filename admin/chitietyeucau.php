@@ -160,11 +160,9 @@
 
                                     </form> 
 
-                                            <?php }
+                                    <?php }
 
-                                            else  { ?>
- 
- 
+                                 else  { ?>
                                     <form method="post" action="capnhatyeucau.php?id=<?php echo $id;?>" enctype="multipart/form-data">
 
                                     
@@ -175,7 +173,10 @@
                                      
  
                                             <div class="form-group row">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"><strong>Loại yêu cầu: </strong> <span> <?php echo $order[0]["tenyeucau"] ?></span> </label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"><strong>Loại yêu cầu: </strong> <span> <?php echo $order[0]["tenyeucau"] ?></span>                                            <?php if ($order[0]['loaiyeucauid']== 1 && $order[0]['tinhtrangid'] == 2 ) 
+                                             {?>
+                                             <button><a href="suayeucau.php?id=<?php echo $id;?>"target="_blank">Sửa</a></button>
+                                             <?php } ?> </label>
 
                                             </div>
                                             
@@ -258,9 +259,9 @@
                                                         
                                                 <?php } ?>
                                     </form>
-                                        <?php
-                                         }
-                                          ?>
+                                <?php
+                                 }
+                                  ?>
                                 </div>
                             </div>
                         </div>          
